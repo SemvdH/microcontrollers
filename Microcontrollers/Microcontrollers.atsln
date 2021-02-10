@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Atmel Studio Solution File, Format Version 11.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Microcontrollers", "Microcontrollers\Microcontrollers.cproj", "{2285C48D-296E-43FD-A7B6-69885F64CFFD}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.4", "Microcontrollers\opdracht 1.4.cproj", "{2285C48D-296E-43FD-A7B6-69885F64CFFD}"
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.7a", "opdracht 2.7a\opdracht 1.7a.cproj", "{B7ED8D27-9387-4A45-A238-923F89602FB5}"
 EndProject
