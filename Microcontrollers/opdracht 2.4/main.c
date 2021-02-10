@@ -53,14 +53,14 @@ void wait( int ms )
 
 int main( void )
 {
-	DDRA = 0xFF;
+	DDRA = 0xFF; // set PORTA to all output
 	
 	
 	while (1==1)
 	{
 		// Set index to begin of pattern array
 		int index = 0;
-		// as long as delay has meaningful content
+		// loop through the array
 		for (int i = 0; i < sizeof(segments)/sizeof(segments[0]); i++)
 		{
 			// Write data to PORTA
@@ -71,6 +71,7 @@ int main( void )
 			index++;
 		}
 	}
+	
 	/*we need to free the memory taken up by the array, otherwise it won't clear properly*/
 	free(segments);
 
