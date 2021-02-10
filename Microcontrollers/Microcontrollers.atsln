@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Microcontrollers", "Microcontrollers\Microcontrollers.cproj", "{2285C48D-296E-43FD-A7B6-69885F64CFFD}"
 EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 2.7a", "opdracht 2.7a\opdracht 2.7a.cproj", "{B7ED8D27-9387-4A45-A238-923F89602FB5}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.7a", "opdracht 2.7a\opdracht 1.7a.cproj", "{B7ED8D27-9387-4A45-A238-923F89602FB5}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.6", "opdracht 1.6\opdracht 1.6.cproj", "{2C44E92F-6D48-45BD-810A-AD501EC081FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Debug|AVR.Build.0 = Debug|AVR
 		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Release|AVR.ActiveCfg = Release|AVR
 		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Release|AVR.Build.0 = Release|AVR
+		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Debug|AVR.Build.0 = Debug|AVR
+		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Release|AVR.ActiveCfg = Release|AVR
+		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

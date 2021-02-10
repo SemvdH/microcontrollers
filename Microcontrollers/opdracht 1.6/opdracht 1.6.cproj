@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.microchip.xc8</ToolchainName>
-    <ProjectGuid>{b7ed8d27-9387-4a45-a238-923f89602fb5}</ProjectGuid>
+    <ProjectGuid>{2c44e92f-6d48-45bd-810a-ad501ec081fe}</ProjectGuid>
     <avrdevice>ATmega128</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>opdracht 2.7a</AssemblyName>
-    <Name>opdracht 2.7a</Name>
-    <RootNamespace>opdracht 2.7a</RootNamespace>
+    <AssemblyName>opdracht 1.6</AssemblyName>
+    <Name>opdracht 1.6</Name>
+    <RootNamespace>opdracht 1.6</RootNamespace>
     <ToolchainFlavour>XC8_2.31</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
