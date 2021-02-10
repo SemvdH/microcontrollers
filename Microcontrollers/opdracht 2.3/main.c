@@ -84,7 +84,7 @@ int main(void)
 	
     while(1)
     {
-        if((PIND == 0b00000011) && (count != 0)){
+        if((count != 0) && (PIND == 0b00000011)){
 	        count = 0;
 			setDisplay(count);
         }
