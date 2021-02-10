@@ -5,7 +5,11 @@
  * Author : Sem
  */ 
 
+#define F_CPU 10e6
+
 #include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
 
 void wait( int ms )
 {

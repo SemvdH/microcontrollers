@@ -36,7 +36,8 @@ SUBDIRS :=
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
-C_SRCS += 
+C_SRCS +=  \
+../main.c
 
 
 PREPROCESSING_SRCS += 
@@ -45,13 +46,17 @@ PREPROCESSING_SRCS +=
 ASM_SRCS += 
 
 
-OBJS += 
+OBJS +=  \
+main.o
 
-OBJS_AS_ARGS += 
+OBJS_AS_ARGS +=  \
+main.o
 
-C_DEPS += 
+C_DEPS +=  \
+main.d
 
-C_DEPS_AS_ARGS += 
+C_DEPS_AS_ARGS +=  \
+main.d
 
 OUTPUT_FILE_PATH +=opdracht\ 1.3.elf
 
@@ -67,6 +72,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -O0 -ffunction-sections -fdata-sections -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 
 
 
