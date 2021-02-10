@@ -11,6 +11,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   3 .debug_aranges 00000028  00000000  00000000  0000017f  2**0
                   CONTENTS, READONLY, DEBUGGING
+<<<<<<< HEAD
+  4 .debug_info   00000b4d  00000000  00000000  000001a7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000830  00000000  00000000  00000cf4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000002ae  00000000  00000000  00001524  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000034  00000000  00000000  000017d4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000027d  00000000  00000000  00001808  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000089  00000000  00000000  00001a85  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000018  00000000  00000000  00001b0e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .text         00000004  000000f8  000000f8  0000014c  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001b28  2**2
+=======
   4 .debug_info   00000b26  00000000  00000000  000001a7  2**0
                   CONTENTS, READONLY, DEBUGGING
   5 .debug_abbrev 00000830  00000000  00000000  00000ccd  2**0
@@ -28,6 +47,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
  11 .text         00000004  000000f8  000000f8  0000014c  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
  12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001b00  2**2
+>>>>>>> main
                   CONTENTS, READONLY, DEBUGGING
  13 .text.wait    0000001e  000000da  000000da  0000012e  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
@@ -92,7 +112,11 @@ Disassembly of section .text:
 Disassembly of section .text:
 
 000000f8 <__bad_interrupt>:
+<<<<<<< HEAD
+  f8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+=======
   f8:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+>>>>>>> main
 
 Disassembly of section .text.wait:
 
