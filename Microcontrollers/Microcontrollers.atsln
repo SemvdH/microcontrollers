@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Atmel Studio Solution File, Format Version 11.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.4", "Microcontrollers\opdracht 1.4.cproj", "{2285C48D-296E-43FD-A7B6-69885F64CFFD}"
-EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.7a", "opdracht 2.7a\opdracht 1.7a.cproj", "{B7ED8D27-9387-4A45-A238-923F89602FB5}"
-EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.6", "opdracht 1.6\opdracht 1.6.cproj", "{2C44E92F-6D48-45BD-810A-AD501EC081FE}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.3", "opdracht 1.3\opdracht 1.3.cproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.4", "opdracht 1.4\opdracht 1.4.cproj", "{2285C48D-296E-43FD-A7B6-69885F64CFFD}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.5", "opdracht 1.5\opdracht 1.5.cproj", "{B2CED75E-444E-40D3-8DB2-1E83EBFA08BA}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 1.7a", "opdracht 1.7a\opdracht 1.7a.cproj", "{BAE7767D-1CC2-42DA-9CC0-FD878EA43AC1}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 2.1", "opdracht 2.1\opdracht 2.1.cproj", "{69165C62-B4D4-4FE3-B777-080628FAC668}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +21,30 @@ Global
 		Release|AVR = Release|AVR
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Debug|AVR.ActiveCfg = Debug|AVR
-		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Debug|AVR.Build.0 = Debug|AVR
-		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Release|AVR.ActiveCfg = Release|AVR
-		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Release|AVR.Build.0 = Release|AVR
-		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Debug|AVR.ActiveCfg = Debug|AVR
-		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Debug|AVR.Build.0 = Debug|AVR
-		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Release|AVR.ActiveCfg = Release|AVR
-		{B7ED8D27-9387-4A45-A238-923F89602FB5}.Release|AVR.Build.0 = Release|AVR
 		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Debug|AVR.ActiveCfg = Debug|AVR
 		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Debug|AVR.Build.0 = Debug|AVR
 		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Release|AVR.ActiveCfg = Release|AVR
 		{2C44E92F-6D48-45BD-810A-AD501EC081FE}.Release|AVR.Build.0 = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Debug|AVR.Build.0 = Debug|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.ActiveCfg = Release|AVR
+		{DCE6C7E3-EE26-4D79-826B-08594B9AD897}.Release|AVR.Build.0 = Release|AVR
+		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Debug|AVR.Build.0 = Debug|AVR
+		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Release|AVR.ActiveCfg = Release|AVR
+		{2285C48D-296E-43FD-A7B6-69885F64CFFD}.Release|AVR.Build.0 = Release|AVR
+		{B2CED75E-444E-40D3-8DB2-1E83EBFA08BA}.Debug|AVR.ActiveCfg = Debug|AVR
+		{B2CED75E-444E-40D3-8DB2-1E83EBFA08BA}.Debug|AVR.Build.0 = Debug|AVR
+		{B2CED75E-444E-40D3-8DB2-1E83EBFA08BA}.Release|AVR.ActiveCfg = Release|AVR
+		{B2CED75E-444E-40D3-8DB2-1E83EBFA08BA}.Release|AVR.Build.0 = Release|AVR
+		{BAE7767D-1CC2-42DA-9CC0-FD878EA43AC1}.Debug|AVR.ActiveCfg = Debug|AVR
+		{BAE7767D-1CC2-42DA-9CC0-FD878EA43AC1}.Debug|AVR.Build.0 = Debug|AVR
+		{BAE7767D-1CC2-42DA-9CC0-FD878EA43AC1}.Release|AVR.ActiveCfg = Release|AVR
+		{BAE7767D-1CC2-42DA-9CC0-FD878EA43AC1}.Release|AVR.Build.0 = Release|AVR
+		{69165C62-B4D4-4FE3-B777-080628FAC668}.Debug|AVR.ActiveCfg = Debug|AVR
+		{69165C62-B4D4-4FE3-B777-080628FAC668}.Debug|AVR.Build.0 = Debug|AVR
+		{69165C62-B4D4-4FE3-B777-080628FAC668}.Release|AVR.ActiveCfg = Release|AVR
+		{69165C62-B4D4-4FE3-B777-080628FAC668}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
