@@ -14,7 +14,7 @@
 ** Author: 			dkroeske@gmail.com
 ** -------------------------------------------------------------------------*/
 
-#define F_CPU 8e6
+#define F_CPU 10e6
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -44,18 +44,7 @@ notes:			Set PORTD.5
 Version :    	DMK, Initial code
 *******************************************************************/
 ISR( INT0_vect ) {
-    PORTD |= (1<<5);		
-}
-
-/******************************************************************
-short:			ISR INT1
-inputs:
-outputs:
-notes:			Clear PORTD.5
-Version :    	DMK, Initial code
-*******************************************************************/
-ISR( INT1_vect ) {
-    PORTD &= ~(1<<5);		
+	PORTC 	
 }
 
 /******************************************************************
@@ -70,7 +59,7 @@ int main( void ) {
 	DDRD = 0xF0;			// PORTD(7:4) output, PORTD(3:0) input	
 
 	// Init Interrupt hardware
-	EICRA |= 0x0B;			// INT1 falling edge, INT0 rising edge
+	EICRA |= 0x00000010;			// INT0 falling edge
 	EIMSK |= 0x03;			// Enable INT1 & INT0
 	
 	// Enable global interrupt system
@@ -78,8 +67,7 @@ int main( void ) {
 	sei();				
 
 	while (1) {
-		PORTD ^= (1<<7);	// Toggle PORTD.7
-		wait( 500 );								
+										
 	}
 
 	return 1;
