@@ -14,7 +14,10 @@ void wait( int ms ) {
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
-
+/************************************************************************/
+/* interrupt 1
+walk the light 1 down                                                                     */
+/************************************************************************/
 ISR( INT1_vect ) {
 	if (PORTC == 0b10000000)
 	{
@@ -26,6 +29,10 @@ ISR( INT1_vect ) {
 	
 }
 
+/************************************************************************/
+/* interrupt 2
+walk the light 1 up                                                                     */
+/************************************************************************/
 ISR( INT2_vect ) {
 	if (PORTC == 0b00000001)
 	{
@@ -47,13 +54,13 @@ int main(void)
 	EICRA |= 0x2C;			// INT2 falling edge, INT1 rising edge
 	EIMSK |= 0x06;			// Enable INT2 & INT1
 	
-	PORTC = 0x01;
+	PORTC = 0x01; // init the first bit
 	
-	sei();
+	sei(); // enable input mechanism
 	
     while (1) 
     {
-		wait(500);
+		
     }
 }
 
