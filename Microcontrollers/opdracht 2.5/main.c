@@ -6,7 +6,7 @@
  */ 
 
 
-#define F_CPU 8e6
+#define F_CPU 10e6
 #include <xc.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -15,24 +15,41 @@
 #define LCD_E 	3
 #define LCD_RS	2
 
+void _delay_ms(double __ms);
 void lcd_strobe_lcd_e(void);
+void sbi_portc(int index);
+void cbi_portc(int index);
 void init_4bits_mode(void);
-void lcd_write_string(char *str);
-void lcd_write_data(unsigned char byte);
-void lcd_write_cmd(unsigned char byte);
+void lcd_write_string(const char *str);
+void lcd_add_character(unsigned char byte);
+void lcd_add_command(unsigned char byte);
 
 int main(void)
 {
+	init_4bits_mode();
+	
+	
+	
     while(1)
     {
+	
         //TODO:: Please write your application code 
     }
 }
 
 void lcd_strobe_lcd_e(void) {
-	PORTC |= (1<<LCD_E);	// E high
+	sbi_portc(LCD_E);	// E high
 	_delay_ms(1);
-	PORTC &= ~(1<<LCD_E);  	// E low
+	cbi_portc(LCD_E);  	// E low
+	_delay_ms(1);
+}
+
+void sbi_portc(int index){
+	PORTC |= (1<<index);
+}
+
+void cbi_portc(int index){
+	PORTC &= ~(1<<index);
 }
 
 void init_4bits_mode(void) {
@@ -58,4 +75,44 @@ void init_4bits_mode(void) {
 	lcd_strobe_lcd_e();
 	PORTC = 0x60;	// Entry mode set low nibble
 	lcd_strobe_lcd_e();
+	
+	lcd_write_string("Pintebaas");
+}
+
+void lcd_add_character(unsigned char byte){
+	
+	//upper nibble
+	PORTC = byte;
+	sbi_portc(LCD_RS);
+	lcd_strobe_lcd_e();
+	
+	//lower nibble
+	PORTC = (byte<<4);
+	sbi_portc(LCD_RS);
+	lcd_strobe_lcd_e();
+}
+
+void lcd_add_command(unsigned char byte){
+	
+	//upper nibble
+	PORTC = byte;
+	cbi_portc(LCD_RS);
+	lcd_strobe_lcd_e();
+	
+	//lower nibble
+	PORTC = (byte<<4);
+	cbi_portc(LCD_RS);
+	lcd_strobe_lcd_e();
+}
+
+void lcd_write_string(const char *str) {
+	
+	for(;*str; str++){
+		lcd_add_character(*str);
+	}
+}
+
+void lcd_move_right(void){
+	
+	lcd_add_command(0x1E);
 }
