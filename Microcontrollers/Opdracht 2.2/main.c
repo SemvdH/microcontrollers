@@ -64,3 +64,42 @@ int main(void)
     }
 }
 
+void lcd_strobe_lcd_e(void) {
+	PORTC |= (1<<LCD_E);	// E high
+	_delay_ms(1);			
+	PORTC &= ~(1<<LCD_E);  	// E low
+}
+
+void init_4bits_mode(void) {
+	// PORTC output mode and all low (also E and RS pin)
+	DDRC = 0xFF;
+	PORTC = 0x00;
+
+	PORTC = 0x20;	// (0x28 for 2 lines)
+	lcd_strobe_lcd_e();
+}
+
+void init_4bits_mode(void) {
+	
+	// PORTC output mode and all low (also E and RS pin)
+	DDRC = 0xFF;
+	PORTC = 0x00;
+	
+	PORTC = 0x20;	// function for 4-bit 1 row
+	lcd_strobe_lcd_e();
+
+	PORTC = 0x20;   // function high nibble 4-bit 2 row
+	lcd_strobe_lcd_e();
+	PORTC = 0x80;	// function low nibble 4-bit 2 row
+	lcd_strobe_lcd_e();
+
+	PORTC = 0x00;   // function high nibble turn on visible blinking-block cursor
+	lcd_strobe_lcd_e();
+	PORTC = 0xF0;   // function low nibble turn on visible blinking-block cursor
+	lcd_strobe_lcd_e();
+
+	PORTC = 0x00;   // Entry mode set high nibble
+	lcd_strobe_lcd_e();
+	PORTC = 0x60;	// Entry mode set low nibble
+	lcd_strobe_lcd_e();
+}
