@@ -3,31 +3,29 @@ opdracht 3.3.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000002  00800100  00000190  00000224  2**0
+  0 .data         00000000  00800100  00800100  00000196  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000190  00000000  00000000  00000094  2**1
+  1 .text         00000142  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800102  00800102  00000226  2**0
-                  ALLOC
-  3 .comment      00000030  00000000  00000000  00000226  2**0
+  2 .comment      00000030  00000000  00000000  00000196  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000258  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001c8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000038  00000000  00000000  00000294  2**0
+  4 .debug_aranges 00000038  00000000  00000000  00000204  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000944  00000000  00000000  000002cc  2**0
+  5 .debug_info   00000944  00000000  00000000  0000023c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000878  00000000  00000000  00000c10  2**0
+  6 .debug_abbrev 00000878  00000000  00000000  00000b80  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000329  00000000  00000000  00001488  2**0
+  7 .debug_line   00000317  00000000  00000000  000013f8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000074  00000000  00000000  000017b4  2**2
+  8 .debug_frame  00000068  00000000  00000000  00001710  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000046a  00000000  00000000  00001828  2**0
+  9 .debug_str    0000046a  00000000  00000000  00001778  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000000cd  00000000  00000000  00001c92  2**0
+ 10 .debug_loc    000000b3  00000000  00000000  00001be2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000028  00000000  00000000  00001d5f  2**0
+ 11 .debug_ranges 00000028  00000000  00000000  00001c95  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,20 +114,20 @@ Disassembly of section .text:
   98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e0 e9       	ldi	r30, 0x90	; 144
+  9e:	e2 e4       	ldi	r30, 0x42	; 66
   a0:	f1 e0       	ldi	r31, 0x01	; 1
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a2 30       	cpi	r26, 0x02	; 2
+  ac:	a0 30       	cpi	r26, 0x00	; 0
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
   b2:	21 e0       	ldi	r18, 0x01	; 1
-  b4:	a2 e0       	ldi	r26, 0x02	; 2
+  b4:	a0 e0       	ldi	r26, 0x00	; 0
   b6:	b1 e0       	ldi	r27, 0x01	; 1
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
@@ -137,11 +135,11 @@ Disassembly of section .text:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	a4 30       	cpi	r26, 0x04	; 4
+  bc:	a0 30       	cpi	r26, 0x00	; 0
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
-  c2:	5b d0       	rcall	.+182    	; 0x17a <main>
-  c4:	63 c0       	rjmp	.+198    	; 0x18c <_exit>
+  c2:	34 d0       	rcall	.+104    	; 0x12c <main>
+  c4:	3c c0       	rjmp	.+120    	; 0x13e <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
@@ -162,8 +160,8 @@ void wait( int ms ) {
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  ce:	ef ec       	ldi	r30, 0xCF	; 207
-  d0:	f7 e0       	ldi	r31, 0x07	; 7
+  ce:	e3 ec       	ldi	r30, 0xC3	; 195
+  d0:	f9 e0       	ldi	r31, 0x09	; 9
   d2:	31 97       	sbiw	r30, 0x01	; 1
   d4:	f1 f7       	brne	.-4      	; 0xd2 <wait+0xa>
   d6:	00 c0       	rjmp	.+0      	; 0xd8 <wait+0x10>
@@ -183,8 +181,8 @@ void wait( int ms ) {
 volatile int msCount = 0;
 
 void timer2Init( void ) {
-	OCR2 = 155;				// Compare value of counter 2
-  e6:	8b e9       	ldi	r24, 0x9B	; 155
+	OCR2 = 150; //155				// Compare value of counter 2
+  e6:	86 e9       	ldi	r24, 0x96	; 150
   e8:	83 bd       	out	0x23, r24	; 35
 	TIMSK |= BIT(7);		// T2 compare match interrupt enable
   ea:	87 b7       	in	r24, 0x37	; 55
@@ -192,8 +190,8 @@ void timer2Init( void ) {
   ee:	87 bf       	out	0x37, r24	; 55
 	sei();					// turn_on intr all
   f0:	78 94       	sei
-	TCCR2 = 0b00001011;		// Initialize T2: timer, prescaler=32, compare output disconnected,CTC,RUN
-  f2:	8b e0       	ldi	r24, 0x0B	; 11
+	TCCR2 = 0b00001101;		// Initialize T2: timer, prescaler=32, compare output disconnected,CTC,RUN
+  f2:	8d e0       	ldi	r24, 0x0D	; 13
   f4:	85 bd       	out	0x25, r24	; 37
   f6:	08 95       	ret
 
@@ -207,86 +205,58 @@ ISR( TIMER2_COMP_vect ) {
   fc:	0f b6       	in	r0, 0x3f	; 63
   fe:	0f 92       	push	r0
  100:	11 24       	eor	r1, r1
- 102:	2f 93       	push	r18
- 104:	3f 93       	push	r19
- 106:	8f 93       	push	r24
- 108:	9f 93       	push	r25
-	msCount++;					// Increment ms counter
- 10a:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
- 10e:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <__data_end+0x1>
- 112:	01 96       	adiw	r24, 0x01	; 1
- 114:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <__data_end+0x1>
- 118:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <__data_end>
-	if ( msCount >= msThersh ) {
- 11c:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <__data_end>
- 120:	30 91 03 01 	lds	r19, 0x0103	; 0x800103 <__data_end+0x1>
- 124:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 128:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
- 12c:	28 17       	cp	r18, r24
- 12e:	39 07       	cpc	r19, r25
- 130:	d8 f0       	brcs	.+54     	; 0x168 <__vector_9+0x70>
-				// Toggle bit 0 van PORTC
-		PORTC ^= BIT(0);		
- 132:	95 b3       	in	r25, 0x15	; 21
- 134:	81 e0       	ldi	r24, 0x01	; 1
- 136:	89 27       	eor	r24, r25
- 138:	85 bb       	out	0x15, r24	; 21
-		msCount = 0;
- 13a:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <__data_end+0x1>
- 13e:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__data_end>
-		if(msThersh == 15){
- 142:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 146:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
- 14a:	0f 97       	sbiw	r24, 0x0f	; 15
- 14c:	39 f4       	brne	.+14     	; 0x15c <__vector_9+0x64>
-			msThersh = 25;
- 14e:	89 e1       	ldi	r24, 0x19	; 25
- 150:	90 e0       	ldi	r25, 0x00	; 0
- 152:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
- 156:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
- 15a:	06 c0       	rjmp	.+12     	; 0x168 <__vector_9+0x70>
+ 102:	8f 93       	push	r24
+ 104:	9f 93       	push	r25
+		PORTC ^= BIT(0);
+ 106:	95 b3       	in	r25, 0x15	; 21
+ 108:	81 e0       	ldi	r24, 0x01	; 1
+ 10a:	89 27       	eor	r24, r25
+ 10c:	85 bb       	out	0x15, r24	; 21
+		if(OCR2 == 250){
+ 10e:	83 b5       	in	r24, 0x23	; 35
+ 110:	8a 3f       	cpi	r24, 0xFA	; 250
+ 112:	19 f4       	brne	.+6      	; 0x11a <__vector_9+0x22>
+			OCR2 = 150;	
+ 114:	86 e9       	ldi	r24, 0x96	; 150
+ 116:	83 bd       	out	0x23, r24	; 35
+ 118:	02 c0       	rjmp	.+4      	; 0x11e <__vector_9+0x26>
 		} else {
-			msThersh = 15;
- 15c:	8f e0       	ldi	r24, 0x0F	; 15
- 15e:	90 e0       	ldi	r25, 0x00	; 0
- 160:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
- 164:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
-		}			// Reset ms_count value
-	}
-	
+			OCR2 = 250;
+ 11a:	8a ef       	ldi	r24, 0xFA	; 250
+ 11c:	83 bd       	out	0x23, r24	; 35
+		}
+		
 }
- 168:	9f 91       	pop	r25
- 16a:	8f 91       	pop	r24
- 16c:	3f 91       	pop	r19
- 16e:	2f 91       	pop	r18
- 170:	0f 90       	pop	r0
- 172:	0f be       	out	0x3f, r0	; 63
- 174:	0f 90       	pop	r0
- 176:	1f 90       	pop	r1
- 178:	18 95       	reti
+ 11e:	9f 91       	pop	r25
+ 120:	8f 91       	pop	r24
+ 122:	0f 90       	pop	r0
+ 124:	0f be       	out	0x3f, r0	; 63
+ 126:	0f 90       	pop	r0
+ 128:	1f 90       	pop	r1
+ 12a:	18 95       	reti
 
-0000017a <main>:
+0000012c <main>:
 
 int main( void ) {
 	DDRC = 0xFF;
- 17a:	8f ef       	ldi	r24, 0xFF	; 255
- 17c:	84 bb       	out	0x14, r24	; 20
+ 12c:	8f ef       	ldi	r24, 0xFF	; 255
+ 12e:	84 bb       	out	0x14, r24	; 20
 	PORTC = BIT(0);				// set PORTC for output (toggle PC0)
- 17e:	81 e0       	ldi	r24, 0x01	; 1
- 180:	85 bb       	out	0x15, r24	; 21
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	85 bb       	out	0x15, r24	; 21
 	timer2Init();
- 182:	b1 df       	rcall	.-158    	; 0xe6 <timer2Init>
+ 134:	d8 df       	rcall	.-80     	; 0xe6 <timer2Init>
 
 	while (1) {
 		// do something else
 		wait(10);			// every 10 ms (busy waiting
- 184:	8a e0       	ldi	r24, 0x0A	; 10
- 186:	90 e0       	ldi	r25, 0x00	; 0
- 188:	9f df       	rcall	.-194    	; 0xc8 <wait>
- 18a:	fc cf       	rjmp	.-8      	; 0x184 <main+0xa>
+ 136:	8a e0       	ldi	r24, 0x0A	; 10
+ 138:	90 e0       	ldi	r25, 0x00	; 0
+ 13a:	c6 df       	rcall	.-116    	; 0xc8 <wait>
+ 13c:	fc cf       	rjmp	.-8      	; 0x136 <main+0xa>
 
-0000018c <_exit>:
- 18c:	f8 94       	cli
+0000013e <_exit>:
+ 13e:	f8 94       	cli
 
-0000018e <__stop_program>:
- 18e:	ff cf       	rjmp	.-2      	; 0x18e <__stop_program>
+00000140 <__stop_program>:
+ 140:	ff cf       	rjmp	.-2      	; 0x140 <__stop_program>

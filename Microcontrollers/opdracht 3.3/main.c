@@ -5,7 +5,7 @@
  * Author : Etienne
  */ 
 
-#define F_CPU 8e6
+#define F_CPU 10e6
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -23,26 +23,21 @@ void wait( int ms ) {
 volatile int msCount = 0;
 
 void timer2Init( void ) {
-	OCR2 = 155;				// Compare value of counter 2
+	OCR2 = 150; //155				// Compare value of counter 2
 	TIMSK |= BIT(7);		// T2 compare match interrupt enable
 	sei();					// turn_on intr all
-	TCCR2 = 0b00001011;		// Initialize T2: timer, prescaler=32, compare output disconnected,CTC,RUN
+	TCCR2 = 0b00001101;		// Initialize T2: timer, prescaler=32, compare output disconnected,CTC,RUN
 }
 unsigned int msThersh = 15;
 
 ISR( TIMER2_COMP_vect ) {
-	msCount++;					// Increment ms counter
-	if ( msCount >= msThersh ) {
-				// Toggle bit 0 van PORTC
-		PORTC ^= BIT(0);		
-		msCount = 0;
-		if(msThersh == 15){
-			msThersh = 25;
+		PORTC ^= BIT(0);
+		if(OCR2 == 250){
+			OCR2 = 150;	
 		} else {
-			msThersh = 15;
-		}			// Reset ms_count value
-	}
-	
+			OCR2 = 250;
+		}
+		
 }
 
 int main( void ) {
