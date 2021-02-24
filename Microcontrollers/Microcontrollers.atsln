@@ -23,6 +23,8 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 2.5", "opdracht 2.
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "testlcd", "testlcd\testlcd.cproj", "{B964892D-A92F-44D4-AF99-3ADC61820917}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 3.2", "opdracht 3.2\opdracht 3.2.cproj", "{EB7415C6-2130-46AD-9842-612C67ADE6D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -69,6 +71,10 @@ Global
 		{B964892D-A92F-44D4-AF99-3ADC61820917}.Debug|AVR.Build.0 = Debug|AVR
 		{B964892D-A92F-44D4-AF99-3ADC61820917}.Release|AVR.ActiveCfg = Release|AVR
 		{B964892D-A92F-44D4-AF99-3ADC61820917}.Release|AVR.Build.0 = Release|AVR
+		{EB7415C6-2130-46AD-9842-612C67ADE6D4}.Debug|AVR.ActiveCfg = Debug|AVR
+		{EB7415C6-2130-46AD-9842-612C67ADE6D4}.Debug|AVR.Build.0 = Debug|AVR
+		{EB7415C6-2130-46AD-9842-612C67ADE6D4}.Release|AVR.ActiveCfg = Release|AVR
+		{EB7415C6-2130-46AD-9842-612C67ADE6D4}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
