@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>7.0</ProjectVersion>
     <ToolchainName>com.microchip.xc8</ToolchainName>
-    <ProjectGuid>{e0046ce4-d6f8-435f-9c6e-72e6eb89ccb3}</ProjectGuid>
+    <ProjectGuid>{9154c165-89ab-43cf-8c28-23147bc26fdc}</ProjectGuid>
     <avrdevice>ATmega128</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
