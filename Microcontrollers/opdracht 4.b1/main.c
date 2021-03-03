@@ -30,11 +30,19 @@ void wait( int ms )
 }
 
 
-// Initialize ADC: 10-bits (left justified), free running
+// Initialize ADC: 10-bits (left justified), no free running
 void adcInit( void )
 {
+	sei();						// enable interrupts
 	ADMUX = 0b01100011;			// AREF=VCC, result left adjusted, channel3 at pin PF3
-	ADCSRA = 0b11100110;		// ADC-enable, no interrupt, start, free running, division by 64
+	ADCSRA = 0b10001110;		// ADC-enable, start conversion mode, no free running, interrupt enable 
+}
+
+/************************************************************************/
+/* starts AD converstion by setting bit 6 in ADCSRA to 1                */
+/************************************************************************/
+void startConversion(void) {
+	ADCSRA |= BIT(6);
 }
 
 
@@ -50,6 +58,8 @@ int main( void )
 	{
 		PORTB = ADCL;			// Show MSB/LSB (bit 10:0) of ADC
 		PORTA = ADCH;
+		
+		startConversion();
 		wait(100);				// every 100 ms (busy waiting)
 	}
 }
