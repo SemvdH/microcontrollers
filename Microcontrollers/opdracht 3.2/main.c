@@ -6,6 +6,8 @@
  */ 
 
 #define F_CPU 8e6
+#include <stdlib.h>
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -33,15 +35,20 @@ char * toArray(int number)
 	return numberArray;
 }
 
-volatile int TimerPreset = -1;  // 0xF6, 10 till overflow
-volatile int number = 0;
+int TimerPreset = -1;  // 0xF6, 10 till overflow
+int number = 0;
 
 // Interrupt routine timer2 overflow
 ISR( TIMER2_OVF_vect ) {
 	TCNT2 = TimerPreset;	// Preset value
 	number++;		// Increment counter
 	lcd_clear();
-	lcd_write_character(toArray(number));
+	
+	int length = snprintf(NULL, 0, "%d", number + 1);
+	char str[length + 1];
+	snprintf(str, length + 1, "%d", number + 1);
+	
+	lcd_write_string(str);
 }
 
 // Initialize timer2
@@ -59,6 +66,11 @@ int main(void) {
 	DDRB = 0xFF;			// set PORTB for output (shows tenthvalue)
 	
 	init_4bits_mode();
+	_delay_ms(10);
+	
+	lcd_clear();
+	
+	lcd_write_string("yeet");
 	
 	timer2Init();
 

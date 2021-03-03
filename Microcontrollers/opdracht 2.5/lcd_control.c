@@ -4,7 +4,7 @@
  * Created: 24-2-2021 11:55:12
  *  Author: Sem
  */ 
-
+#define F_CPU 10e6
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
