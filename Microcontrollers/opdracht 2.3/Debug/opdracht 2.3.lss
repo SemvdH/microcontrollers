@@ -137,7 +137,7 @@ Disassembly of section .text:
 Disassembly of section .text:
 
 000002fe <__bad_interrupt>:
- 2fe:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+ 2fe:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
 
 Disassembly of section .text.__vector_1:
 
@@ -165,13 +165,13 @@ Disassembly of section .text.__vector_1:
  126:	df 93       	push	r29
  128:	cd b7       	in	r28, 0x3d	; 61
  12a:	de b7       	in	r29, 0x3e	; 62
- 12c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 130:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 12c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 130:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  134:	01 96       	adiw	r24, 0x01	; 1
- 136:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 13a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 13e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 142:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 136:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 13a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 13e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 142:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  146:	0e 94 3a 01 	call	0x274	; 0x274 <setDisplay>
  14a:	00 00       	nop
  14c:	df 91       	pop	r29
@@ -222,13 +222,13 @@ Disassembly of section .text.__vector_2:
  1a6:	df 93       	push	r29
  1a8:	cd b7       	in	r28, 0x3d	; 61
  1aa:	de b7       	in	r29, 0x3e	; 62
- 1ac:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 1b0:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 1ac:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1b0:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  1b4:	01 97       	sbiw	r24, 0x01	; 1
- 1b6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 1ba:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
- 1be:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 1c2:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 1b6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 1ba:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1be:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1c2:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  1c6:	0e 94 3a 01 	call	0x274	; 0x274 <setDisplay>
  1ca:	00 00       	nop
  1cc:	df 91       	pop	r29
@@ -361,8 +361,8 @@ Disassembly of section .text.main:
  240:	fc 01       	movw	r30, r24
  242:	20 83       	st	Z, r18
  244:	78 94       	sei
- 246:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 24a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 246:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 24a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  24e:	89 2b       	or	r24, r25
  250:	d1 f3       	breq	.-12     	; 0x246 <main+0x4c>
  252:	80 e3       	ldi	r24, 0x30	; 48
@@ -371,10 +371,10 @@ Disassembly of section .text.main:
  258:	80 81       	ld	r24, Z
  25a:	83 30       	cpi	r24, 0x03	; 3
  25c:	a1 f7       	brne	.-24     	; 0x246 <main+0x4c>
- 25e:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 262:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
- 266:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 26a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 25e:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 262:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 266:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 26a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  26e:	0e 94 3a 01 	call	0x274	; 0x274 <setDisplay>
  272:	e9 cf       	rjmp	.-46     	; 0x246 <main+0x4c>
 
