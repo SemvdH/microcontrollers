@@ -161,8 +161,8 @@ Disassembly of section .text.lcd_strobe_lcd_e:
  12c:	86 e0       	ldi	r24, 0x06	; 6
  12e:	90 e0       	ldi	r25, 0x00	; 0
  130:	0e 94 fc 00 	call	0x1f8	; 0x1f8 <sbi_porta>
- 134:	89 ef       	ldi	r24, 0xF9	; 249
- 136:	90 e0       	ldi	r25, 0x00	; 0
+ 134:	83 ec       	ldi	r24, 0xC3	; 195
+ 136:	99 e0       	ldi	r25, 0x09	; 9
  138:	01 97       	sbiw	r24, 0x01	; 1
  13a:	f1 f7       	brne	.-4      	; 0x138 <lcd_strobe_lcd_e+0xc>
  13c:	00 c0       	rjmp	.+0      	; 0x13e <lcd_strobe_lcd_e+0x12>
@@ -170,8 +170,8 @@ Disassembly of section .text.lcd_strobe_lcd_e:
  140:	86 e0       	ldi	r24, 0x06	; 6
  142:	90 e0       	ldi	r25, 0x00	; 0
  144:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <cbi_porta>
- 148:	89 ef       	ldi	r24, 0xF9	; 249
- 14a:	90 e0       	ldi	r25, 0x00	; 0
+ 148:	83 ec       	ldi	r24, 0xC3	; 195
+ 14a:	99 e0       	ldi	r25, 0x09	; 9
  14c:	01 97       	sbiw	r24, 0x01	; 1
  14e:	f1 f7       	brne	.-4      	; 0x14c <lcd_strobe_lcd_e+0x20>
  150:	00 c0       	rjmp	.+0      	; 0x152 <lcd_strobe_lcd_e+0x26>
@@ -223,8 +223,8 @@ Disassembly of section .text.lcd_clear:
 000001c6 <lcd_clear>:
  1c6:	81 e0       	ldi	r24, 0x01	; 1
  1c8:	0e 94 bf 00 	call	0x17e	; 0x17e <lcd_write_command>
- 1cc:	83 ef       	ldi	r24, 0xF3	; 243
- 1ce:	91 e0       	ldi	r25, 0x01	; 1
+ 1cc:	87 e8       	ldi	r24, 0x87	; 135
+ 1ce:	93 e1       	ldi	r25, 0x13	; 19
  1d0:	01 97       	sbiw	r24, 0x01	; 1
  1d2:	f1 f7       	brne	.-4      	; 0x1d0 <lcd_clear+0xa>
  1d4:	00 c0       	rjmp	.+0      	; 0x1d6 <lcd_clear+0x10>
