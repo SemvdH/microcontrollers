@@ -47,7 +47,6 @@ ISR( TIMER2_OVF_vect ) {
 	int length = snprintf(NULL, 0, "%d", number + 1);
 	char str[length + 1];
 	snprintf(str, length + 1, "%d", number + 1);
-	
 	lcd_write_string(str);
 }
 
