@@ -5,6 +5,7 @@
  *  Author: Sem
  */ 
 
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -78,6 +79,13 @@ void init_4bits_mode(void) {
 	// return home
 	lcd_write_command(0x02);
 	lcd_strobe_lcd_e();
+}
+
+void lcd_write_integer(int number){
+	int length = snprintf(NULL, 0, "%d", number + 1);
+	char str[length + 1];
+	snprintf(str, length + 1, "%d", number);
+	lcd_write_string(str);
 }
 
 void lcd_write_character(unsigned char byte){

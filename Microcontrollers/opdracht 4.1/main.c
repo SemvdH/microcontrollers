@@ -6,7 +6,9 @@
  */ 
 
 
-#define F_CPU 10e6
+#define F_CPU 8e6
+#include <stdio.h>
+#include <stdlib.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -31,40 +33,51 @@ void timer2Init( void ) {
 }
 
 ISR( TIMER2_COMP_vect ) {
-	
+	ADCSRA |= BIT(6);
 }
 
 int getADCValue(){
 	int value = 0;
 	value = ADCH;
 	value <<= 2;
-	value += ADCL;
+	value += (ADCL >> 6);
 	return value;
 }
 
+
+
 int main(void)
 {
+	int previousValue = 0;
     /* Replace with your application code */
 	DDRF = 0x00; // set port F input.
 	DDRE = 0xFF; // all port A output.
 	adcInit();
 	
 	init_4bits_mode();
-	lcd_clear();
-	lcd_move_right();
-	lcd_move_right();
-	lcd_write_string("MOOOOOOOOO");
-	
 	_delay_ms(10);
+	lcd_clear();
 
-	//timer2Init();
+	timer2Init();
     while (1) 
     {
-		ADCSRA |= BIT(6);
-		PORTE = ADCH;
-		//lcd_clear();
-		//lcd_write_character(getADCValue());
-		wait(10);
+		PORTD = ADCH;
+		PORTE = ADCL;
+		
+		int number = ADCH;
+
+		if(previousValue != number){
+			
+			lcd_clear();
+			
+			wait(10);
+			
+			lcd_write_integer(getADCValue());
+		}
+		
+		previousValue = number;
+		
+		wait(100);
     }
 }
 
