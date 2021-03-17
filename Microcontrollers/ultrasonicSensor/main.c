@@ -4,9 +4,16 @@
  * Created: 17-3-2021 09:47:12
  * Author : Sem
  
- timer aanzetten met tccrn2
+ ultrasoon op timer 1 want 16 bits
+ timer aanzetten met tccrn1
  interrupt op falling edge van echo
- in interrupt timer op 0 zetten en tccrn2 op 0
+ in interrupt timer op 0 zetten en tccrn1 op 0
+ interrupt op rising edge in echo,
+	dan timer aanzetten
+	en interrupt zetten op falling edge in echo
+	als falling edge interrupt geeft ->
+		waarde uit timer uitlezen
+		en formule gebruiken high level time * velocity (340M/S) / 2
  
  */ 
 #define F_CPU 20e6
