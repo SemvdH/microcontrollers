@@ -110,7 +110,7 @@ Disassembly of section .text:
 Disassembly of section .text:
 
 0000021c <__bad_interrupt>:
- 21c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+ 21c:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
 
 Disassembly of section .text.sbi_porta:
 

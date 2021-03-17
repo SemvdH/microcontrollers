@@ -13,11 +13,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 00000070  00000000  00000000  00000270  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000cd9  00000000  00000000  000002e0  2**0
+  5 .debug_info   00000cd8  00000000  00000000  000002e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000008c5  00000000  00000000  00000fb9  2**0
+  6 .debug_abbrev 000008c5  00000000  00000000  00000fb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000004b8  00000000  00000000  0000187e  2**0
+  7 .debug_line   000004b8  00000000  00000000  0000187d  2**0
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  000000d8  00000000  00000000  00001d38  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -222,7 +222,7 @@ void displayOff()
  148:	c8 df       	rcall	.-112    	; 0xda <spi_slaveSelect>
  14a:	8b e0       	ldi	r24, 0x0B	; 11
  14c:	c2 df       	rcall	.-124    	; 0xd2 <spi_write>
- 14e:	83 e0       	ldi	r24, 0x03	; 3
+ 14e:	87 e0       	ldi	r24, 0x07	; 7
  150:	c0 df       	rcall	.-128    	; 0xd2 <spi_write>
  152:	80 e0       	ldi	r24, 0x00	; 0
  154:	ce df       	rcall	.-100    	; 0xf2 <spi_slaveDeSelect>
@@ -250,30 +250,25 @@ displayDriverInit(); // Initialize display chip
  170:	da df       	rcall	.-76     	; 0x126 <displayDriverInit>
  172:	c1 e0       	ldi	r28, 0x01	; 1
 // clear display (all zero's)
-for (unsigned char i =1; i<=4; i++)
+
+for (unsigned char i =1; i<=8; i++)
  174:	04 c0       	rjmp	.+8      	; 0x17e <main+0x16>
- 176:	6c 2f       	mov	r22, r28
+ 176:	60 e0       	ldi	r22, 0x00	; 0
 {
-// spi_slaveSelect(0); // Select display chip
- //spi_write(i); // digit adress: (digit place)
- //spi_write(0); // digit value: 0
- //spi_slaveDeSelect(0); // Deselect display chip
-spi_writeCommand(i,i);
+spi_writeCommand(i,0);
  178:	8c 2f       	mov	r24, r28
  17a:	c6 df       	rcall	.-116    	; 0x108 <spi_writeCommand>
  17c:	cf 5f       	subi	r28, 0xFF	; 255
-{
 DDRB=0x01; // Set PB0 pin as output for display select
 spi_masterInit(); // Initialize spi module
 displayDriverInit(); // Initialize display chip
 // clear display (all zero's)
-for (unsigned char i =1; i<=4; i++)
- 17e:	c5 30       	cpi	r28, 0x05	; 5
+
+for (unsigned char i =1; i<=8; i++)
+ 17e:	c9 30       	cpi	r28, 0x09	; 9
  180:	d0 f3       	brcs	.-12     	; 0x176 <main+0xe>
- //spi_write(i); // digit adress: (digit place)
- //spi_write(0); // digit value: 0
- //spi_slaveDeSelect(0); // Deselect display chip
-spi_writeCommand(i,i);
+{
+spi_writeCommand(i,0);
 }
 wait(1000);
  182:	88 ee       	ldi	r24, 0xE8	; 232
@@ -281,13 +276,9 @@ wait(1000);
  186:	8b df       	rcall	.-234    	; 0x9e <wait>
  188:	c1 e0       	ldi	r28, 0x01	; 1
 // write 4-digit data
-for (unsigned char i =1; i<=4; i++)
+for (unsigned char i =1; i<=8; i++)
  18a:	07 c0       	rjmp	.+14     	; 0x19a <main+0x32>
  {
-//spi_slaveSelect(0); // Select display chip
-//spi_write(i); // digit adress: (digit place)
-//spi_write(i); // digit value: i (= digit place)
-//spi_slaveDeSelect(0); // Deselect display chip
 spi_writeCommand(i,i);
  18c:	6c 2f       	mov	r22, r28
  18e:	8c 2f       	mov	r24, r28
@@ -296,17 +287,16 @@ wait(1000);
  192:	88 ee       	ldi	r24, 0xE8	; 232
  194:	93 e0       	ldi	r25, 0x03	; 3
  196:	83 df       	rcall	.-250    	; 0x9e <wait>
- //spi_slaveDeSelect(0); // Deselect display chip
-spi_writeCommand(i,i);
+{
+spi_writeCommand(i,0);
 }
 wait(1000);
 // write 4-digit data
-for (unsigned char i =1; i<=4; i++)
+for (unsigned char i =1; i<=8; i++)
  198:	cf 5f       	subi	r28, 0xFF	; 255
- 19a:	c5 30       	cpi	r28, 0x05	; 5
+ 19a:	c9 30       	cpi	r28, 0x09	; 9
  19c:	b8 f3       	brcs	.-18     	; 0x18c <main+0x24>
-//spi_write(i); // digit value: i (= digit place)
-//spi_slaveDeSelect(0); // Deselect display chip
+ {
 spi_writeCommand(i,i);
 wait(1000);
  }

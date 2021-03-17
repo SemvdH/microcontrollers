@@ -12,7 +12,7 @@
 * NOTES : Turn ON switch 15, PB1/PB2/PB3 to MISO/MOSI/SCK
 */
 #define F_CPU 10e6
-#include <avr/io.h>
+#include <avr/io.h>[-]
 #include <util/delay.h>
 #define BIT(x) ( 1<<x )
 #define DDR_SPI DDRB // spi Data direction register
@@ -83,7 +83,7 @@ spi_slaveSelect(0); // Select display chip (MAX7219)
  spi_slaveDeSelect(0); // Deselect display chip
  spi_slaveSelect(0); // Select display chip
  spi_write(0x0B); // Register 0B: Scan-limit
- spi_write(0x03); // -> 1 = Display digits 0..1 the hex value here selects how many segments get initialized
+ spi_write(0x07); // -> 1 = Display digits 0..1 the hex value here selects how many segments get initialized
  spi_slaveDeSelect(0); // Deselect display chip
  spi_slaveSelect(0); // Select display chip
  spi_write(0x0C); // Register 0B: Shutdown register
@@ -112,22 +112,15 @@ DDRB=0x01; // Set PB0 pin as output for display select
 spi_masterInit(); // Initialize spi module
 displayDriverInit(); // Initialize display chip
 // clear display (all zero's)
-for (unsigned char i =1; i<=4; i++)
+
+for (unsigned char i =1; i<=8; i++)
 {
-// spi_slaveSelect(0); // Select display chip
- //spi_write(i); // digit adress: (digit place)
- //spi_write(0); // digit value: 0
- //spi_slaveDeSelect(0); // Deselect display chip
-spi_writeCommand(i,i);
+spi_writeCommand(i,0);
 }
 wait(1000);
 // write 4-digit data
-for (unsigned char i =1; i<=4; i++)
+for (unsigned char i =1; i<=8; i++)
  {
-//spi_slaveSelect(0); // Select display chip
-//spi_write(i); // digit adress: (digit place)
-//spi_write(i); // digit value: i (= digit place)
-//spi_slaveDeSelect(0); // Deselect display chip
 spi_writeCommand(i,i);
 wait(1000);
  }
