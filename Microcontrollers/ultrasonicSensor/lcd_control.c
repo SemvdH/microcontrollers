@@ -126,8 +126,8 @@ void lcd_move_right(void){
 
 void lcd_write_int(int number)
 {
-	int length = snprintf(NULL, 0, "%d", number + 1);
+	int length = snprintf(NULL, 0, "%d", number);
 	char str[length + 1];
-	snprintf(str, length + 1, "%d", number + 1);
+	snprintf(str, length + 1, "%d", number);
 	lcd_write_string(str);
 }
