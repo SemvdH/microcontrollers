@@ -20,6 +20,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 #include "lcd_control.h"
 
@@ -53,13 +54,22 @@ void ultrasonic_send_pulse()
 
 ISR(INT0_vect)
 {
-	// set interrupt pin 0 on PORTD to falling edge
+	
+	// if the interrupt was generated on a rising edge (start sending echo)
 	if (int_stat == INTERRUPT_RISING)
 	{
+		// set interrupt pin 0 on PORTD to falling edge
+		EICRA = 0x02;
 		
+		// set interrupt status
 		int_stat = INTERRUPT_FALLING;
-	} else {
+	} else 
+	// else if it was generated on a falling edge (end sending echo)
+	{
+		// set interrupt pin 0 on PORTD to rising edge
+		EICRA = 0x03;
 		
+		// set interrupt status
 		int_stat = INTERRUPT_RISING;
 	}
 	
@@ -68,7 +78,10 @@ ISR(INT0_vect)
 
 int main(void)
 {
-	DDRG = 0x01; // port g pin 0 on output, 1 on input. 0 is trig, 1 is echo
+	DDRG = 0xFF; // port g all output. pin 0 is trig, the rest is for debug
+	DDRD = 0x00; // port D pin 0 on input. 0 is echo and also interrupt
+	
+	DDRA = 0xFF;
 	
 	EICRA |= 0x03; // interrupt PORTD on pin 0, rising edge
 	
@@ -80,6 +93,12 @@ int main(void)
     while (1) 
     {
 		ultrasonic_send_pulse();
+		if (int_stat == INTERRUPT_FALLING)
+		{
+			PORTA = 0xFF;
+		} else {
+			PORTA = 0x00;
+		}
 		
 		wait_ms(100);
     }
