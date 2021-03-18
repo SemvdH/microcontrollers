@@ -28,7 +28,7 @@ enum interrupt_status {INTERRUPT_FALLING, INTERRUPT_RISING};
 	
 static enum interrupt_status int_stat = INTERRUPT_RISING;
 
-uint16_t timer_dist = 0; // time measured by timer;
+uint16_t timer_dist = 125; // time measured by timer;
 
 void wait_us(unsigned int us)
 {
@@ -57,6 +57,7 @@ void ultrasonic_send_pulse()
 ISR(INT0_vect)
 {
 	
+	timer_dist = 2009;
 	// if the interrupt was generated on a rising edge (start sending echo)
 	if (int_stat == INTERRUPT_RISING)
 	{
@@ -113,7 +114,7 @@ int main(void)
 		
 		int distance = timer_dist * 340 / 2;
 		lcd_clear();
-		lcd_write_int(distance);
+		lcd_write_int(timer_dist);
 		
 		
 		wait_ms(1000);
