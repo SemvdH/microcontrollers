@@ -107,7 +107,6 @@ int main(void)
 	lcd_clear();
 
 
-    /* Replace with your application code */
     while (1) 
     {
 		ultrasonic_send_pulse();
@@ -117,7 +116,7 @@ int main(void)
 		lcd_write_int(timer_dist);
 		
 		
-		wait_ms(1000);
+		wait_ms(100);
     }
 }
 

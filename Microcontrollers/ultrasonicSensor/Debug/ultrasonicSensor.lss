@@ -13,11 +13,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .debug_aranges 000000b8  00000000  00000000  00000a40  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000fc1  00000000  00000000  00000af8  2**0
+  5 .debug_info   00000fc0  00000000  00000000  00000af8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000a99  00000000  00000000  00001ab9  2**0
+  6 .debug_abbrev 00000a99  00000000  00000000  00001ab8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000716  00000000  00000000  00002552  2**0
+  7 .debug_line   00000716  00000000  00000000  00002551  2**0
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  000001b4  00000000  00000000  00002c68  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -588,7 +588,6 @@ int main(void)
  33e:	00 00       	nop
 
 
-    /* Replace with your application code */
     while (1) 
     {
 		ultrasonic_send_pulse();
@@ -604,9 +603,9 @@ int main(void)
  34e:	34 df       	rcall	.-408    	; 0x1b8 <lcd_write_int>
 		
 		
-		wait_ms(1000);
- 350:	88 ee       	ldi	r24, 0xE8	; 232
- 352:	93 e0       	ldi	r25, 0x03	; 3
+		wait_ms(100);
+ 350:	84 e6       	ldi	r24, 0x64	; 100
+ 352:	90 e0       	ldi	r25, 0x00	; 0
  354:	96 df       	rcall	.-212    	; 0x282 <wait_ms>
  356:	f5 cf       	rjmp	.-22     	; 0x342 <main+0x30>
 
