@@ -55,7 +55,6 @@ void init_4bits_mode(void) {
 	DDRC = 0xFF;			// PORTD(7) output, PORTD(6:0) input
 	PORTC = 0xFF;
 	
-	DDRD = 0xFF;
 	DDRA = 0xFF;
 	PORTC = 0x00;
 	PORTA = 0x00;

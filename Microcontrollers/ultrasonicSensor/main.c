@@ -90,7 +90,7 @@ int main(void)
 	DDRG = 0xFF; // port g all output. pin 0 is trig, the rest is for debug
 	DDRD = 0x00; // port D pin 0 on input. 0 is echo and also interrupt
 	
-	EICRA |= 0x03; // interrupt PORTD on pin 0, rising edge
+	EICRA = 0x03; // interrupt PORTD on pin 0, rising edge
 	
 	EIMSK |= 0x01; // enable interrupt on pin 0 (INT0)
 	
