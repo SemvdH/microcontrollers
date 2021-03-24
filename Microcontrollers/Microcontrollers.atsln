@@ -29,7 +29,9 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 2.4", "opdracht 2.
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 3.3", "opdracht 3.3\opdracht 3.3.cproj", "{985D5C75-F61E-49F1-A532-66A1E6141552}"
 EndProject
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 4.1", "opdracht 4.1\opdracht 4.1.cproj", "{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 4.b1", "opdracht 4.b1\opdracht 4.b1.cproj", "{314FE495-A311-499D-B63E-4B5E7B7F2054}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ultrasonicSensor", "ultrasonicSensor\ultrasonicSensor.cproj", "{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}"
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht C", "opdracht C\opdracht C.cproj", "{2DF6F5F3-181F-430E-B49A-3D9794F91482}"
 EndProject
@@ -91,6 +93,7 @@ Global
 		{985D5C75-F61E-49F1-A532-66A1E6141552}.Debug|AVR.Build.0 = Debug|AVR
 		{985D5C75-F61E-49F1-A532-66A1E6141552}.Release|AVR.ActiveCfg = Release|AVR
 		{985D5C75-F61E-49F1-A532-66A1E6141552}.Release|AVR.Build.0 = Release|AVR
+<<<<<<< HEAD
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Debug|AVR.ActiveCfg = Debug|AVR
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Debug|AVR.Build.0 = Debug|AVR
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Release|AVR.ActiveCfg = Release|AVR
@@ -99,6 +102,16 @@ Global
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Debug|AVR.Build.0 = Debug|AVR
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Release|AVR.ActiveCfg = Release|AVR
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Release|AVR.Build.0 = Release|AVR
+=======
+		{314FE495-A311-499D-B63E-4B5E7B7F2054}.Debug|AVR.ActiveCfg = Debug|AVR
+		{314FE495-A311-499D-B63E-4B5E7B7F2054}.Debug|AVR.Build.0 = Debug|AVR
+		{314FE495-A311-499D-B63E-4B5E7B7F2054}.Release|AVR.ActiveCfg = Release|AVR
+		{314FE495-A311-499D-B63E-4B5E7B7F2054}.Release|AVR.Build.0 = Release|AVR
+		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Debug|AVR.ActiveCfg = Debug|AVR
+		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Debug|AVR.Build.0 = Debug|AVR
+		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Release|AVR.ActiveCfg = Release|AVR
+		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Release|AVR.Build.0 = Release|AVR
+>>>>>>> ultrasonic-sensor
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
