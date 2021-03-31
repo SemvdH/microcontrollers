@@ -14,6 +14,7 @@
 ** Author: 			dkroeske@gmail.com
 ** -------------------------------------------------------------------------*/
 
+#define F_CPU 10e6
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -92,6 +93,21 @@ Version :    	DMK, Initial code
 	}
 }
 
+void matrix_clear()
+{
+	twi_start();
+	twi_tx(0xE0);
+	twi_tx(0x00);
+	for (int i = 0; i < 16; i++)
+	{
+		
+		twi_tx(0x00);
+	}
+	twi_stop();
+}
+
+void turn_on_set_led()
+
 /******************************************************************/
 int main( void )
 /* 
@@ -126,23 +142,21 @@ Version :    	DMK, Initial code
 	twi_tx(0x81);	// Display OFF - Blink On
 	twi_stop();
 
+	matrix_clear();
 	while (1)
 	{
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(0x00);	// data
-		twi_stop();
-
-		wait(500);	
-
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(0x01);	// data
-		twi_stop();	
-
-		wait(500);
+		for (int i = 0; i < 16; i += 2)
+		{
+			twi_start();
+			twi_tx(0xE0);
+			twi_tx((char)i);
+			twi_tx(0xFF);
+			twi_stop();
+			
+			wait(200);
+		}
+		matrix_clear();
+		
 	}
 
 	return 1;
