@@ -11,23 +11,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   3 .debug_aranges 00000028  00000000  00000000  00000277  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000b85  00000000  00000000  0000029f  2**0
+  4 .debug_info   00000bac  00000000  00000000  0000029f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000854  00000000  00000000  00000e24  2**0
+  5 .debug_abbrev 00000854  00000000  00000000  00000e4b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000002b1  00000000  00000000  00001678  2**0
+  6 .debug_line   000002b1  00000000  00000000  0000169f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000034  00000000  00000000  0000192c  2**2
+  7 .debug_frame  00000034  00000000  00000000  00001950  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000027d  00000000  00000000  00001960  2**0
+  8 .debug_str    0000027d  00000000  00000000  00001984  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    000000b2  00000000  00000000  00001bdd  2**0
+  9 .debug_loc    000000b2  00000000  00000000  00001c01  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000030  00000000  00000000  00001c8f  2**0
+ 10 .debug_ranges 00000030  00000000  00000000  00001cb3  2**0
                   CONTENTS, READONLY, DEBUGGING
  11 .text         00000004  00000140  00000140  000001b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001cc0  2**2
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001ce4  2**2
                   CONTENTS, READONLY, DEBUGGING
  13 .text.wait    0000001e  00000122  00000122  00000196  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
@@ -136,7 +136,7 @@ Disassembly of section .text:
 Disassembly of section .text:
 
 00000140 <__bad_interrupt>:
- 140:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+ 140:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 Disassembly of section .text.wait:
 
@@ -179,14 +179,14 @@ Disassembly of section .text.main:
 
 int main( void )
 {
-	DDRA = 0xFF;
+	DDRA = 0xFF; // set PORTA to all output
   ec:	8f ef       	ldi	r24, 0xFF	; 255
   ee:	8a bb       	out	0x1a, r24	; 26
 	while (1==1)
 	{
 		// Set index to begin of pattern array
 		int index = 0;
-		// as long as delay has meaningful content
+		// loop through the array
 		for (int i = 0; i < sizeof(segments)/sizeof(segments[0]); i++)
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	10 e0       	ldi	r17, 0x00	; 0
@@ -198,7 +198,7 @@ int main( void )
 		int index = 0;
   f4:	c0 e0       	ldi	r28, 0x00	; 0
   f6:	d0 e0       	ldi	r29, 0x00	; 0
-		// as long as delay has meaningful content
+		// loop through the array
 		for (int i = 0; i < sizeof(segments)/sizeof(segments[0]); i++)
   f8:	10 c0       	rjmp	.+32     	; 0x11a <main+0x2e>
 		{
@@ -225,7 +225,7 @@ int main( void )
 	{
 		// Set index to begin of pattern array
 		int index = 0;
-		// as long as delay has meaningful content
+		// loop through the array
 		for (int i = 0; i < sizeof(segments)/sizeof(segments[0]); i++)
  116:	0f 5f       	subi	r16, 0xFF	; 255
  118:	1f 4f       	sbci	r17, 0xFF	; 255

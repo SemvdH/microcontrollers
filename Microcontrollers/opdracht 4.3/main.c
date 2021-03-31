@@ -52,7 +52,7 @@ int main(void)
     /* Replace with your application code */
 	DDRF = 0x00; // set port F input.
 	DDRE = 0xFF; // all port A output.
-	
+	adcInit();
 	
 	init_4bits_mode();
 	_delay_ms(10);
@@ -72,7 +72,7 @@ int main(void)
 			
 			wait(10);
 			
-			lcd_write_integer((getADCValue()));
+			lcd_write_integer((getADCValue() >> 1));
 		}
 		
 		previousValue = number;

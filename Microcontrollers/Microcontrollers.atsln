@@ -35,6 +35,12 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ultrasonicSensor", "ultraso
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht C", "opdracht C\opdracht C.cproj", "{2DF6F5F3-181F-430E-B49A-3D9794F91482}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 4.b1", "opdracht 4.b1\opdracht 4.b1.cproj", "{596B8FFA-0A57-48B9-AE5D-B29F78D46CF6}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "opdracht 4.3", "opdracht 4.3\opdracht 4.3.cproj", "{F7219797-D668-49E2-AC80-7EAF068BA957}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Servo_driver", "GLCDdriver\Servo_driver.cproj", "{FE1D92D4-4858-4112-AD41-E57799A980C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -98,6 +104,7 @@ Global
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Debug|AVR.Build.0 = Debug|AVR
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Release|AVR.ActiveCfg = Release|AVR
 		{2432E6BF-DA1E-4668-99BB-59FEA1F5B8A2}.Release|AVR.Build.0 = Release|AVR
+<<<<<<< Updated upstream
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Debug|AVR.ActiveCfg = Debug|AVR
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Debug|AVR.Build.0 = Debug|AVR
 		{2DF6F5F3-181F-430E-B49A-3D9794F91482}.Release|AVR.ActiveCfg = Release|AVR
@@ -112,6 +119,20 @@ Global
 		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Release|AVR.ActiveCfg = Release|AVR
 		{26DA64DE-DD48-4718-94B5-81F9EC5D4B33}.Release|AVR.Build.0 = Release|AVR
 >>>>>>> ultrasonic-sensor
+=======
+		{596B8FFA-0A57-48B9-AE5D-B29F78D46CF6}.Debug|AVR.ActiveCfg = Debug|AVR
+		{596B8FFA-0A57-48B9-AE5D-B29F78D46CF6}.Debug|AVR.Build.0 = Debug|AVR
+		{596B8FFA-0A57-48B9-AE5D-B29F78D46CF6}.Release|AVR.ActiveCfg = Release|AVR
+		{596B8FFA-0A57-48B9-AE5D-B29F78D46CF6}.Release|AVR.Build.0 = Release|AVR
+		{F7219797-D668-49E2-AC80-7EAF068BA957}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F7219797-D668-49E2-AC80-7EAF068BA957}.Debug|AVR.Build.0 = Debug|AVR
+		{F7219797-D668-49E2-AC80-7EAF068BA957}.Release|AVR.ActiveCfg = Release|AVR
+		{F7219797-D668-49E2-AC80-7EAF068BA957}.Release|AVR.Build.0 = Release|AVR
+		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Debug|AVR.ActiveCfg = Debug|AVR
+		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Debug|AVR.Build.0 = Debug|AVR
+		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Release|AVR.ActiveCfg = Release|AVR
+		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Release|AVR.Build.0 = Release|AVR
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
