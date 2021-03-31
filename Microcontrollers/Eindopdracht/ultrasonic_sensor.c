@@ -42,9 +42,9 @@ void ultrasonic_init()
 	DDRG = 0xFF; // port g all output. pin 0 is trig, the rest is for debug
 	DDRD = 0x00; // port D pin 0 on input. 0 is echo and also interrupt
 	
-	EICRA = 0x03; // interrupt PORTD on pin 0, rising edge
+	EICRA = 0x30; // interrupt PORTD on pin 2, rising edge
 	
-	EIMSK |= 0x01; // enable interrupt on pin 0 (INT0)
+	EIMSK |= 0x04; // enable interrupt on pin 2 (INT2)
 	
 	TCCR1A = 0b00000000; // initialize timer1, prescaler=256
 	TCCR1B = 0b00001100; // CTC compare A, RUN
@@ -65,7 +65,7 @@ void ultrasonic_handle_interrupt()
 	if (int_stat == INTERRUPT_RISING)
 	{
 		// set interrupt pin 0 on PORTD to falling edge
-		EICRA = 0x02;
+		EICRA = 0x20;
 		
 		// reset the time in timer1
 		TCNT1 = 0x00;
@@ -76,7 +76,7 @@ void ultrasonic_handle_interrupt()
 	// else if it was generated on a falling edge (end sending echo)
 	{
 		// set interrupt pin 0 on PORTD to rising edge
-		EICRA = 0x03;
+		EICRA = 0x30; // interrupt PORTD on pin 2, rising edge
 		
 		// read timer1 into time_dist
 		timer_dist = TCNT1;
