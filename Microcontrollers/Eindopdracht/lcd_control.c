@@ -25,7 +25,7 @@ void lcd_strobe_lcd_e(void) {
 	sbi_porta(LCD_E);	// E high
 	_delay_ms(1);
 	cbi_porta(LCD_E);  	// E low
-	_delay_ms(1);
+	_delay_ms(2);
 	
 }
 

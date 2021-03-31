@@ -127,6 +127,8 @@ Global
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Debug|AVR.Build.0 = Debug|AVR
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Release|AVR.ActiveCfg = Release|AVR
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Release|AVR.Build.0 = Release|AVR
+<<<<<<< HEAD
+=======
 		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Debug|AVR.ActiveCfg = Debug|AVR
 		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Debug|AVR.Build.0 = Debug|AVR
 		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Release|AVR.ActiveCfg = Release|AVR
@@ -135,6 +137,7 @@ Global
 		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Debug|AVR.Build.0 = Debug|AVR
 		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Release|AVR.ActiveCfg = Release|AVR
 		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Release|AVR.Build.0 = Release|AVR
+>>>>>>> main
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
