@@ -11,7 +11,9 @@
 
 #include <stdbool.h>
 
-void stepper_rotate(uint16_t steps);
 void init_stepper_driver();
+void stepper_rotate(uint16_t steps);
+void stepper_rotate_full_rotation_CW();
+void stepper_rotate_full_rotation_CCW();
 
 #endif /* STEPPER_DRIVER_H_ */

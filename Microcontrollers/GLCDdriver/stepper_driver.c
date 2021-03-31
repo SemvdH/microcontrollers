@@ -33,10 +33,22 @@ uint8_t CW[8] = {0x08,0x0c,0x04,0x06,0x02,0x03,0x01,0x09};
  prescaler = 255
 */
 
-void stepper_rotate_full_rotation();
+enum rotation_wise{
+	CW,
+	CCW
+};
+	
+rotation_wise rotation;
+
+void stepper_rotate_full_rotation_CW();
+void stepper_rotate_full_rotation_CCW();
 
 void set_stepper_state(uint8_t count){
-	PORTE = CW[count];
+	if(rotation == CW){
+		PORTE = CW[count];
+	} else {
+		PORTE = CCW[count];
+	}
 }
 
 void (*snap_event)(uint8_t);
@@ -60,7 +72,11 @@ ISR( TIMER2_COMP_vect ){
 		
 		if(steps_to_do == 0){
 			TCCR2 = 0b00000000;
-			stepper_rotate_full_rotation();
+			if(rotation == CW){
+				stepper_rotate_full_rotation_CW();
+			} else {
+				stepper_rotate_full_rotation_CCW();
+			}
 		} else {
 			
 			if(steps_to_do % 32 == 0){
@@ -80,8 +96,15 @@ ISR( TIMER2_COMP_vect ){
 	}
 }
 
-void stepper_rotate_full_rotation(){
+void stepper_rotate_full_rotation_CW(){
 	steps_to_do = 512;
+	rotation_wise = CW;
+	TCCR2 = 0b00001100;
+}
+
+void stepper_rotate_full_rotation_CCW(){
+	steps_to_do = 512;
+	rotation_wise = CCW;
 	TCCR2 = 0b00001100;
 }
 
@@ -91,6 +114,7 @@ void stepper_rotate(uint16_t steps){
 }
 
 void init_stepper_driver(){
+	rotation = CW;
 	DDRE = 0xff;
 	DDRG = 0xff;
 	PORTG = 0x01;
