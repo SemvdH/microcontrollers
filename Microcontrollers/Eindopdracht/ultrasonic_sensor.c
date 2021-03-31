@@ -19,6 +19,8 @@ enum interrupt_status {INTERRUPT_FALLING, INTERRUPT_RISING};
 
 static enum interrupt_status int_stat = INTERRUPT_RISING;
 
+void (*value_set_event)(uint16_t);
+
 void wait_us(unsigned int us)
 {
 	for(int i = 0; i < us; i++)
@@ -79,9 +81,17 @@ void ultrasonic_handle_interrupt()
 		// read timer1 into time_dist
 		timer_dist = TCNT1;
 		
+		//EVENT
+		value_set_event(timer_dist);
+		
 		// set interrupt status
 		int_stat = INTERRUPT_RISING;
 	}
+}
+
+void set_value_trigger_event(void (*value_set_event_p)(uint16_t)){
+	// event that is triggered when a value is set.
+	value_set_event = value_set_event_p;
 }
 
 uint16_t ultrasonic_get_timer_dist()

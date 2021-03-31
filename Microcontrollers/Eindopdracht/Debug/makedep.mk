@@ -6,5 +6,7 @@ lcd_control.c
 
 main.c
 
+stepper_driver.c
+
 ultrasonic_sensor.c
 
