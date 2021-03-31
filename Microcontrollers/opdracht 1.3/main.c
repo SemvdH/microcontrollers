@@ -21,18 +21,10 @@ void wait( int ms )
 
 int main(void)
 {
-	DDRD = 0b11111111; // d is output
-	DDRC = 0b00000000; // c is all input
-    
+
     while (1) 
     {
-		if (PINC & 0b00000001) {
-			
-			PORTD = 0b01000000;
-			wait(1000);
-			PORTD = 0b00000000;
-			wait(1000);
-		}
+	
     }
 }
 
