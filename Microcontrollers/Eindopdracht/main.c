@@ -15,7 +15,7 @@
 #include "ultrasonic_sensor.h"
 
 
-ISR(INT0_vect)
+ISR(INT2_vect)
 {
 	ultrasonic_handle_interrupt();
 }

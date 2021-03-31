@@ -41,6 +41,10 @@ Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Servo_driver", "GLCDdriver\
 EndProject
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Eindopdracht", "Eindopdracht\Eindopdracht.cproj", "{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}"
 EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "GLCD", "GLCD\GLCD.cproj", "{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "LCDMatrix", "LCDMatrix\LCDMatrix.cproj", "{B8250AAD-AA24-4F1E-8F84-52B104F66735}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AVR = Debug|AVR
@@ -119,13 +123,18 @@ Global
 		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Debug|AVR.Build.0 = Debug|AVR
 		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Release|AVR.ActiveCfg = Release|AVR
 		{FE1D92D4-4858-4112-AD41-E57799A980C9}.Release|AVR.Build.0 = Release|AVR
-<<<<<<< HEAD
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Debug|AVR.ActiveCfg = Debug|AVR
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Debug|AVR.Build.0 = Debug|AVR
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Release|AVR.ActiveCfg = Release|AVR
 		{EAFA506A-B042-4CB2-9335-FBC1D7364EFB}.Release|AVR.Build.0 = Release|AVR
-=======
->>>>>>> fcffefbb7e2c6dd1fafecca07bf84ecaf04b4fd4
+		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Debug|AVR.ActiveCfg = Debug|AVR
+		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Debug|AVR.Build.0 = Debug|AVR
+		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Release|AVR.ActiveCfg = Release|AVR
+		{BBFA8A24-6283-45FE-A253-1F0C6111B1F0}.Release|AVR.Build.0 = Release|AVR
+		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Debug|AVR.ActiveCfg = Debug|AVR
+		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Debug|AVR.Build.0 = Debug|AVR
+		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Release|AVR.ActiveCfg = Release|AVR
+		{B8250AAD-AA24-4F1E-8F84-52B104F66735}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

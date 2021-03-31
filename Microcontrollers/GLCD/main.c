@@ -34,13 +34,14 @@ typedef unsigned char byte;
 #define E_DELAY 10
 #define DATAPORT PORTC
 #define CONTROLPORT	PORTB
+#define CONTTROLDDR DDRB
 #define DATADDR DDRC
 #define DATAPIN PINC
 #define GLCD_CS1 (1<<0)
 #define GLCD_CS2 (1<<1)
-#define GLCD_RS  (1<<2)
-#define GLCD_RW  (1<<3)
-#define GLCD_EN  (1<<5)   
+#define GLCD_RST  (1<<3)
+#define GLCD_RW  (1<<2)
+#define GLCD_EN  (1<<4)   
 #define GLCD_CS_ACTIVE_LOW   1  //Define this if your GLCD CS 
                               //is active low (refer to datasheet)
                                                           
@@ -51,6 +52,40 @@ void wait( int ms )
 	{
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
+}
+
+void wait_us(int us)
+{
+	for (int i=0; i<us; i++)
+	{
+		_delay_us( 1 );		// library function (max 30 ms at 8MHz)
+	}
+	
+}
+
+void GLCD_init()
+{
+	
+	DATADDR = 0xFF; // port c all output
+	CONTTROLDDR = 0xFF; // PORTB all output
+	CONTROLPORT |= (GLCD_CS1) | (GLCD_CS2) | (GLCD_RST);
+	
+	wait(20);
+	
+}
+
+void GLCD_command(char command)
+{
+	DATAPORT = command;
+	CONTROLPORT &= ~GLCD_RST;
+	CONTROLPORT &= ~GLCD_RW;
+	CONTROLPORT |= GLCD_EN;
+	
+	wait_us(5);
+	
+	CONTROLPORT &= ~GLCD_EN;
+	wait_us(5);
+	
 }
 
 void trigger()
@@ -70,9 +105,8 @@ void glcd_on()
 	CONTROLPORT |= CS1;	//Activate both chips
 	CONTROLPORT |= CS2;
 	#endif
-	CONTROLPORT &= ~GLCD_RS;	//RS low --> command
-	CONTROLPORT &= ~GLCD_RW;	//RW low --> write
-	DATAPORT = 0x3F; 	//ON command
+	CONTROLPORT = ~GLCD_RST | ~GLCD_RW;	//RS low --> command
+	DATAPORT = 0b0011111; //OFF command
 	trigger();
 }     
 //----------------------
@@ -85,22 +119,20 @@ void glcd_off()
 	CONTROLPORT |= CS1;	//Activate both chips
 	CONTROLPORT |= CS2;
 	#endif
-	CONTROLPORT &= ~GLCD_RS;	//DI low --> command
-	CONTROLPORT &= ~GLCD_RW;	//RW low --> write
-	DATAPORT = 0x3E; //OFF command
+	CONTROLPORT = ~GLCD_RST | ~GLCD_RW;	//RS low --> command
+	DATAPORT = 0b0011110; //OFF command
 	trigger();
 }
   
 
 int main(void)
 {
+	GLCD_init();
+	glcd_off();
 	while (1)
 	{
 		
-		glcd_on();
-		wait(2000);
-		glcd_off();
-		wait(2000);
+		
 		
 	}
 } 

@@ -3,29 +3,29 @@ GLCD.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000184  2**0
+  0 .data         00000000  00800100  00800100  00000164  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000130  00000000  00000000  00000054  2**1
+  1 .text         00000110  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000184  2**0
+  2 .comment      00000030  00000000  00000000  00000164  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000001b4  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000194  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000040  00000000  00000000  000001f0  2**0
+  4 .debug_aranges 00000058  00000000  00000000  000001d0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000a18  00000000  00000000  00000230  2**0
+  5 .debug_info   00000aeb  00000000  00000000  00000228  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000882  00000000  00000000  00000c48  2**0
+  6 .debug_abbrev 00000891  00000000  00000000  00000d13  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000369  00000000  00000000  000014ca  2**0
+  7 .debug_line   000003e0  00000000  00000000  000015a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000064  00000000  00000000  00001834  2**2
+  8 .debug_frame  00000094  00000000  00000000  00001984  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000463  00000000  00000000  00001898  2**0
+  9 .debug_str    0000045b  00000000  00000000  00001a18  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000f4  00000000  00000000  00001cfb  2**0
+ 10 .debug_loc    00000189  00000000  00000000  00001e73  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000030  00000000  00000000  00001def  2**0
+ 11 .debug_ranges 00000048  00000000  00000000  00001ffc  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -109,28 +109,22 @@ Disassembly of section .text:
   92:	d0 e1       	ldi	r29, 0x10	; 16
   94:	de bf       	out	0x3e, r29	; 62
   96:	cd bf       	out	0x3d, r28	; 61
-  98:	40 d0       	rcall	.+128    	; 0x11a <main>
-  9a:	48 c0       	rjmp	.+144    	; 0x12c <_exit>
+  98:	36 d0       	rcall	.+108    	; 0x106 <main>
+  9a:	38 c0       	rjmp	.+112    	; 0x10c <_exit>
 
 0000009c <__bad_interrupt>:
   9c:	b1 cf       	rjmp	.-158    	; 0x0 <__vectors>
 
 0000009e <wait>:
-                              //is active low (refer to datasheet)
-                                                          
-
-void wait( int ms )
-{
-	for (int i=0; i<ms; i++)
+	CONTROLPORT |= CS1;	//Activate both chips
+	CONTROLPORT |= CS2;
+	#endif
+	CONTROLPORT = ~GLCD_RST | ~GLCD_RW;	//RS low --> command
+	DATAPORT = 0b0011111; //OFF command
+	trigger();
   9e:	20 e0       	ldi	r18, 0x00	; 0
   a0:	30 e0       	ldi	r19, 0x00	; 0
   a2:	08 c0       	rjmp	.+16     	; 0xb4 <wait+0x16>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
   a4:	e3 ec       	ldi	r30, 0xC3	; 195
   a6:	f9 e0       	ldi	r31, 0x09	; 9
   a8:	31 97       	sbiw	r30, 0x01	; 1
@@ -142,129 +136,79 @@ void wait( int ms )
   b4:	28 17       	cp	r18, r24
   b6:	39 07       	cpc	r19, r25
   b8:	ac f3       	brlt	.-22     	; 0xa4 <wait+0x6>
-	{
-		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
-	}
-}
   ba:	08 95       	ret
 
-000000bc <trigger>:
+000000bc <GLCD_init>:
+  bc:	8f ef       	ldi	r24, 0xFF	; 255
+  be:	84 bb       	out	0x14, r24	; 20
+  c0:	87 bb       	out	0x17, r24	; 23
+  c2:	88 b3       	in	r24, 0x18	; 24
+  c4:	8b 60       	ori	r24, 0x0B	; 11
+  c6:	88 bb       	out	0x18, r24	; 24
+  c8:	84 e1       	ldi	r24, 0x14	; 20
+  ca:	90 e0       	ldi	r25, 0x00	; 0
+  cc:	e8 cf       	rjmp	.-48     	; 0x9e <wait>
+  ce:	08 95       	ret
 
-void trigger()
-{
-	CONTROLPORT |= GLCD_EN;	//EN high
-  bc:	88 b3       	in	r24, 0x18	; 24
-  be:	80 62       	ori	r24, 0x20	; 32
-  c0:	88 bb       	out	0x18, r24	; 24
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
+000000d0 <trigger>:
+  d0:	88 b3       	in	r24, 0x18	; 24
+  d2:	80 61       	ori	r24, 0x10	; 16
+  d4:	88 bb       	out	0x18, r24	; 24
+  d6:	81 e2       	ldi	r24, 0x21	; 33
+  d8:	8a 95       	dec	r24
+  da:	f1 f7       	brne	.-4      	; 0xd8 <trigger+0x8>
+  dc:	00 00       	nop
+  de:	88 b3       	in	r24, 0x18	; 24
+  e0:	8f 7e       	andi	r24, 0xEF	; 239
+  e2:	88 bb       	out	0x18, r24	; 24
+  e4:	81 e2       	ldi	r24, 0x21	; 33
+  e6:	8a 95       	dec	r24
+  e8:	f1 f7       	brne	.-4      	; 0xe6 <trigger+0x16>
+  ea:	00 00       	nop
+  ec:	08 95       	ret
 
-	__builtin_avr_delay_cycles(__ticks_dc);
-  c2:	81 e2       	ldi	r24, 0x21	; 33
-  c4:	8a 95       	dec	r24
-  c6:	f1 f7       	brne	.-4      	; 0xc4 <trigger+0x8>
-  c8:	00 00       	nop
-	_delay_us(E_DELAY);
-	CONTROLPORT &= ~GLCD_EN;	//EN low
-  ca:	88 b3       	in	r24, 0x18	; 24
-  cc:	8f 7d       	andi	r24, 0xDF	; 223
-  ce:	88 bb       	out	0x18, r24	; 24
-  d0:	81 e2       	ldi	r24, 0x21	; 33
-  d2:	8a 95       	dec	r24
-  d4:	f1 f7       	brne	.-4      	; 0xd2 <trigger+0x16>
-  d6:	00 00       	nop
-  d8:	08 95       	ret
-
-000000da <glcd_on>:
-}
-//----------------------
-void glcd_on()
-{
-	#ifdef GLCD_CS_ACTIVE_LOW
-	CONTROLPORT &= ~CS1;	//Activate both chips
-  da:	88 b3       	in	r24, 0x18	; 24
-  dc:	8e 7f       	andi	r24, 0xFE	; 254
-  de:	88 bb       	out	0x18, r24	; 24
-	CONTROLPORT &= ~CS2;
-  e0:	88 b3       	in	r24, 0x18	; 24
-  e2:	8d 7f       	andi	r24, 0xFD	; 253
-  e4:	88 bb       	out	0x18, r24	; 24
-	#else
-	CONTROLPORT |= CS1;	//Activate both chips
-	CONTROLPORT |= CS2;
-	#endif
-	CONTROLPORT &= ~GLCD_RS;	//RS low --> command
-  e6:	88 b3       	in	r24, 0x18	; 24
-  e8:	8b 7f       	andi	r24, 0xFB	; 251
-  ea:	88 bb       	out	0x18, r24	; 24
-	CONTROLPORT &= ~GLCD_RW;	//RW low --> write
-  ec:	88 b3       	in	r24, 0x18	; 24
-  ee:	87 7f       	andi	r24, 0xF7	; 247
-  f0:	88 bb       	out	0x18, r24	; 24
-	DATAPORT = 0x3F; 	//ON command
-  f2:	8f e3       	ldi	r24, 0x3F	; 63
-  f4:	85 bb       	out	0x15, r24	; 21
-	trigger();
-  f6:	e2 cf       	rjmp	.-60     	; 0xbc <trigger>
-  f8:	08 95       	ret
-
-000000fa <glcd_off>:
+000000ee <glcd_off>:
 }     
 //----------------------
 void glcd_off()
 {
 	#ifdef GLCD_CS_ACTIVE_LOW
 	CONTROLPORT &= ~CS1;	//Activate both chips
-  fa:	88 b3       	in	r24, 0x18	; 24
-  fc:	8e 7f       	andi	r24, 0xFE	; 254
-  fe:	88 bb       	out	0x18, r24	; 24
+  ee:	88 b3       	in	r24, 0x18	; 24
+  f0:	8e 7f       	andi	r24, 0xFE	; 254
+  f2:	88 bb       	out	0x18, r24	; 24
 	CONTROLPORT &= ~CS2;
- 100:	88 b3       	in	r24, 0x18	; 24
- 102:	8d 7f       	andi	r24, 0xFD	; 253
- 104:	88 bb       	out	0x18, r24	; 24
+  f4:	88 b3       	in	r24, 0x18	; 24
+  f6:	8d 7f       	andi	r24, 0xFD	; 253
+  f8:	88 bb       	out	0x18, r24	; 24
 	#else
 	CONTROLPORT |= CS1;	//Activate both chips
 	CONTROLPORT |= CS2;
 	#endif
-	CONTROLPORT &= ~GLCD_RS;	//DI low --> command
- 106:	88 b3       	in	r24, 0x18	; 24
- 108:	8b 7f       	andi	r24, 0xFB	; 251
- 10a:	88 bb       	out	0x18, r24	; 24
-	CONTROLPORT &= ~GLCD_RW;	//RW low --> write
- 10c:	88 b3       	in	r24, 0x18	; 24
- 10e:	87 7f       	andi	r24, 0xF7	; 247
- 110:	88 bb       	out	0x18, r24	; 24
-	DATAPORT = 0x3E; //OFF command
- 112:	8e e3       	ldi	r24, 0x3E	; 62
- 114:	85 bb       	out	0x15, r24	; 21
+	CONTROLPORT = ~GLCD_RST | ~GLCD_RW;	//RS low --> command
+  fa:	8f ef       	ldi	r24, 0xFF	; 255
+  fc:	88 bb       	out	0x18, r24	; 24
+	DATAPORT = 0b0011110; //OFF command
+  fe:	8e e1       	ldi	r24, 0x1E	; 30
+ 100:	85 bb       	out	0x15, r24	; 21
 	trigger();
- 116:	d2 cf       	rjmp	.-92     	; 0xbc <trigger>
- 118:	08 95       	ret
+ 102:	e6 cf       	rjmp	.-52     	; 0xd0 <trigger>
+ 104:	08 95       	ret
 
-0000011a <main>:
+00000106 <main>:
+}
+  
+
 int main(void)
 {
-	while (1)
-	{
-		
-		glcd_on();
- 11a:	df df       	rcall	.-66     	; 0xda <glcd_on>
-		wait(2000);
- 11c:	80 ed       	ldi	r24, 0xD0	; 208
- 11e:	97 e0       	ldi	r25, 0x07	; 7
-		glcd_off();
- 120:	be df       	rcall	.-132    	; 0x9e <wait>
-		wait(2000);
- 122:	eb df       	rcall	.-42     	; 0xfa <glcd_off>
- 124:	80 ed       	ldi	r24, 0xD0	; 208
- 126:	97 e0       	ldi	r25, 0x07	; 7
- 128:	ba df       	rcall	.-140    	; 0x9e <wait>
- 12a:	f7 cf       	rjmp	.-18     	; 0x11a <main>
+	GLCD_init();
+ 106:	da df       	rcall	.-76     	; 0xbc <GLCD_init>
+	glcd_off();
+ 108:	f2 df       	rcall	.-28     	; 0xee <glcd_off>
+ 10a:	ff cf       	rjmp	.-2      	; 0x10a <main+0x4>
 
-0000012c <_exit>:
- 12c:	f8 94       	cli
+0000010c <_exit>:
+ 10c:	f8 94       	cli
 
-0000012e <__stop_program>:
- 12e:	ff cf       	rjmp	.-2      	; 0x12e <__stop_program>
+0000010e <__stop_program>:
+ 10e:	ff cf       	rjmp	.-2      	; 0x10e <__stop_program>
