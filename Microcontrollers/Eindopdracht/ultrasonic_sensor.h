@@ -16,7 +16,7 @@ void ultrasonic_init();
 void ultrasonic_send_pulse();
 /************************************************************************/
 /* get the value of the timer which equals time taken for sound to		*/
-/* turn					                                                */
+/* return    			                                                */
 /************************************************************************/
 uint16_t ultrasonic_get_timer_dist();
 /************************************************************************/
