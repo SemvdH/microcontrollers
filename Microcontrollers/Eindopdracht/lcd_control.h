@@ -41,6 +41,11 @@ void lcd_write_int(int number);
 /************************************************************************/
 void lcd_write_double(char prefix[], double number, char suffix[]);
 
+/************************************************************************/
+/* write ultrasonic reading on the lcd                                  */
+/************************************************************************/
+void lcd_write_ultrasonic_value(float number);
+
 
 
 #endif /* LCD_CONTROL_H_ */
