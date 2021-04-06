@@ -24,6 +24,7 @@ void lcd_write_character(unsigned char byte);
 void lcd_write_command(unsigned char byte);
 void lcd_clear();
 void lcd_write_int(int number);
+void lcd_write_double(char prefix[], double number, char suffix[]);
 
 
 

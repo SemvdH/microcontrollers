@@ -130,3 +130,11 @@ void lcd_write_int(int number)
 	snprintf(str, length + 1, "%d", number);
 	lcd_write_string(str);
 }
+
+void lcd_write_double(char prefix[], double number, char suffix[])
+{
+	int length = snprintf(NULL, 0, "%s: %.3f %s", prefix, number, suffix);
+	char str[length + 1];
+	snprintf(str, length + 1, "%s: %.3f %s", prefix, number, suffix);
+	lcd_write_string(str);
+}

@@ -53,11 +53,10 @@ int main(void)
 	stepper_rotate_angle(600, ClockWise);
     while (1) 
     {
-		// TODO change to use the stepper motor
-		//ultrasonic_send_pulse(); 
 		
 		lcd_clear();
-		lcd_write_int(ultrasonic_get_timer_dist());
+		double res = ultrasonic_get_timer_dist()/1000.0;
+		lcd_write_double("distance: ",res,"cm");
 		
 		
 		wait_ms(100);

@@ -106,8 +106,6 @@ void matrix_clear()
 	twi_stop();
 }
 
-void turn_on_set_led()
-
 /******************************************************************/
 int main( void )
 /* 
