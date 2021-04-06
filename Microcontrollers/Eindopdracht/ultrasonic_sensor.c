@@ -64,7 +64,7 @@ void ultrasonic_handle_interrupt()
 	// if the interrupt was generated on a rising edge (start sending echo)
 	if (int_stat == INTERRUPT_RISING)
 	{
-		// set interrupt pin 0 on PORTD to falling edge
+		// set interrupt pin 2 on PORTD to falling edge
 		EICRA = 0x20;
 		
 		// reset the time in timer1
