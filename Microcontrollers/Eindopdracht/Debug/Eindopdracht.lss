@@ -411,7 +411,7 @@ void lcd_write_int(int number)
 static void ultrasoon_value_set_event(uint16_t value){
 	// if the SODAR is initialising, then look for close start object.
 	if(initialising){
- 276:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 276:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__data_start>
  27a:	22 23       	and	r18, r18
  27c:	51 f0       	breq	.+20     	; 0x292 <ultrasoon_value_set_event+0x1c>
 		if(value > 0  && value < MAX_DISTANCE_INIT){
@@ -421,7 +421,7 @@ static void ultrasoon_value_set_event(uint16_t value){
 			stepper_rotate_stop();
  284:	d1 d0       	rcall	.+418    	; 0x428 <stepper_rotate_stop>
 			initialising = false;
- 286:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 286:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__data_start>
 			// when found, set the initial rotation.
 			stepper_rotate_angle(ROTAITION_ANGLE, CounterClockWise);
  28a:	61 e0       	ldi	r22, 0x01	; 1
