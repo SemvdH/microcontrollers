@@ -141,8 +141,8 @@ void lcd_write_double(char prefix[], float number, char suffix[])
 
 void lcd_write_ultrasonic_value(float number)
 {
-	int length = snprintf(NULL, 0, "%.3f CM", number);
+	int length = snprintf(NULL, 0, "%f CM", number);
 	char str[length + 1];
-	snprintf(str, length + 1, "%.3f CM", number);
+	snprintf(str, length + 1, "%f CM", number);
 	lcd_write_string(str);
 }
