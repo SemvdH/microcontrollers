@@ -146,10 +146,10 @@ void lcd_write_ultrasonic_value(float number)
 	
 	int length = snprintf(NULL, 0, " cm");
 	
-	char temp[5];
+	char temp[6];
 	dtostrf(number , 2, 2, temp);
 	
 	char str[length + 1];
-	snprintf(str, length + 6, "%s cm", temp);
+	snprintf(str, length + 7, "%s cm", temp);
 	lcd_write_string(str);
 }
