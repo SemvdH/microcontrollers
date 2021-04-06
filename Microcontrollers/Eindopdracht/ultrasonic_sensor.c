@@ -94,8 +94,8 @@ void set_value_trigger_event(void (*value_set_event_p)(uint16_t)){
 	value_set_event = value_set_event_p;
 }
 
-uint16_t ultrasonic_get_timer_dist()
+float ultrasonic_get_timer_dist()
 {
-	return timer_dist * (340 / 2);
+	return timer_dist * (float)(340 / 2.0);
 }
 

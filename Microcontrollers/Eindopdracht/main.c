@@ -69,7 +69,7 @@ int main(void)
     {
 		lcd_clear();
 		// set the ultrasonic value to the lcd.
-		lcd_write_ultrasonic_value(ultrasonic_get_timer_dist());
+		lcd_write_double("dist" ,ultrasonic_get_timer_dist(), "cm");
 		
 		wait_ms(LCD_SET_DELAY);
     }
