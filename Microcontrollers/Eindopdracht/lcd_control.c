@@ -14,21 +14,6 @@
 
 void _delay_ms(double __ms);
 
-void lcd_clear() {
-	lcd_write_command (0x01);						//Clear display
-	_delay_ms(2);
-	lcd_write_command (0x80);						//Cursor back to start
-}
-
-void lcd_strobe_lcd_e(void) {
-	
-	sbi_porta(LCD_E);	// E high
-	_delay_ms(1);
-	cbi_porta(LCD_E);  	// E low
-	_delay_ms(2);
-	
-}
-
 void sbi_portc(int index){
 	PORTC |= (1<<index);
 }
@@ -45,6 +30,21 @@ void sbi_porta(int index){
 
 void cbi_porta(int index){
 	PORTA &= ~(1<<index);
+}
+
+void lcd_clear() {
+	lcd_write_command (0x01);						//Clear display
+	_delay_ms(2);
+	lcd_write_command (0x80);						//Cursor back to start
+}
+
+void lcd_strobe_lcd_e(void) {
+	
+	sbi_porta(LCD_E);	// E high
+	_delay_ms(1);
+	cbi_porta(LCD_E);  	// E low
+	_delay_ms(2);
+	
 }
 
 void init_4bits_mode(void) {
@@ -141,8 +141,15 @@ void lcd_write_double(char prefix[], float number, char suffix[])
 
 void lcd_write_ultrasonic_value(float number)
 {
-	int length = snprintf(NULL, 0, "%f CM", number);
+	//to cm
+	number /= 1000;
+	
+	int length = snprintf(NULL, 0, " cm");
+	
+	char temp[5];
+	dtostrf(number , 2, 2, temp);
+	
 	char str[length + 1];
-	snprintf(str, length + 1, "%f CM", number);
+	snprintf(str, length + 6, "%s cm", temp);
 	lcd_write_string(str);
 }
