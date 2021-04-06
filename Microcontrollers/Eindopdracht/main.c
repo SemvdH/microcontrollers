@@ -2,10 +2,16 @@
  * Eindopdracht.c
  *
  * Created: 31-3-2021 09:42:17
- * Author : Sem
+ * Author : Sem, Guilliam and Stijn.
  */ 
 
 #define F_CPU 10e6
+#define ROTAITION_ANGLE 512
+// rotation with a little overhead so the starting position wil not miss.
+#define INIT_ROTAITION_ANGLE 600
+#define MAX_DISTANCE_INIT 20
+
+#define LCD_SET_DELAY 100
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -16,6 +22,7 @@
 #include "ultrasonic_sensor.h"
 #include "stepper_driver.h"
 
+// if true: in init mode, looking for starting point.
 bool initialising = true;
 
 ISR(INT2_vect)
@@ -24,43 +31,49 @@ ISR(INT2_vect)
 }
 
 static void snap_event_trigger(uint8_t rotation){
+	// when X amount of steps are taken, do pulse.
 	ultrasonic_send_pulse();
 }
 
 static void ultrasoon_value_set_event(uint16_t value){
+	// if the SODAR is initialising, then look for close start object.
 	if(initialising){
-		if(value > 0  && value < 20){
+		if(value > 0  && value < MAX_DISTANCE_INIT){
 			stepper_rotate_stop();
 			initialising = false;
-			stepper_rotate_angle(512, CounterClockWise);
+			// when found, set the initial rotation.
+			stepper_rotate_angle(ROTAITION_ANGLE, CounterClockWise);
 		}
 	}
 }
 
 int main(void)
 {
-    /* Replace with your application code */
+	// initialize ultrasonic sensor driver.
 	ultrasonic_init();
+	// initialize LCD display in 4 bit mode.
 	init_4bits_mode();
+	// initialize stepper driver.
 	init_stepper_driver();
+	// set the event when a pulse must be sent.
 	set_snap_event(&snap_event_trigger);
+	// set a event for when a value has been set from the ultrasonic sensor.
 	set_value_trigger_event(&ultrasoon_value_set_event);
 	
 	_delay_ms(10);
 	
 	lcd_clear();
 	
-	stepper_rotate_angle(600, ClockWise);
+	stepper_rotate_angle(INIT_ROTAITION_ANGLE, ClockWise);
     while (1) 
     {
-		
 		lcd_clear();
-		double res = ultrasonic_get_timer_dist()/1000.0;
-		lcd_write_double("distance: ",res,"cm");
+		// set the ultrasonic value to the lcd.
+		lcd_write_int(ultrasonic_get_timer_dist());
 		
-		
-		wait_ms(100);
+		wait_ms(LCD_SET_DELAY);
     }
+	// stop rotating. (not necessary)
 	stepper_rotate_stop();
 }
 

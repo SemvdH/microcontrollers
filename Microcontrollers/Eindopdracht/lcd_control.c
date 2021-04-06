@@ -15,9 +15,9 @@
 void _delay_ms(double __ms);
 
 void lcd_clear() {
-	lcd_write_command (0x01);						//Leeg display
+	lcd_write_command (0x01);						//Clear display
 	_delay_ms(2);
-	lcd_write_command (0x80);						//Cursor terug naar start
+	lcd_write_command (0x80);						//Cursor back to start
 }
 
 void lcd_strobe_lcd_e(void) {

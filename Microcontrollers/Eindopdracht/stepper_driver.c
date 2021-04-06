@@ -4,8 +4,6 @@
  * Created: 10-Mar-21 12:21:47 PM
  * Author: lemms
  */ 
-#define F_CPU 10e6
-
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -16,25 +14,19 @@
 
 #define BIT(x)			(1 << (x))
 
+// states for stepper to rotate counterclockwise
 uint8_t CCW[8] = {0x09,0x01,0x03,0x02,0x06,0x04,0x0c,0x08};
+// states for stepper to rotate clockwise
 uint8_t CW[8] = {0x08,0x0c,0x04,0x06,0x02,0x03,0x01,0x09};
 
-/*
- Een timer met interupt routine.
- 
- in de interump routine een state machine voor de 8 nibbles
- elke keer dat de interupt routine wordt geroepen wordt de state
- incremented. hier houd je ook een var bij om de relatieve
- positie te weten van de stappenmotor.
- 
- Nog een timer voor microstepping.
- 
- Timers:
- timer voor de speed.
- stappen van 100ms naar 10ms
- prescaler = 255
-*/
-	
+// value for how many steps each turn.	
+uint16_t steps_each_turn = 0;
+// value for the amount of steps still to do.
+uint16_t steps_to_do = 0;
+// which of the stepper states is set currently.
+uint8_t stepper_state = 0;
+
+// current rotation wise. (CW or CCW)	
 enum rotation_wise rotation;
 
 void stepper_rotate_full_rotation_CW();
@@ -54,10 +46,8 @@ void set_snap_event(void (*snap_event_p)(uint8_t)){
 	snap_event = snap_event_p;
 }
 
-uint16_t steps_each_turn = 0;
-uint16_t steps_to_do = 0;
-uint8_t stepper_state = 0;
 ISR( TIMER2_COMP_vect ){
+	
 	TCNT2 = 0;
 	
 	set_stepper_state(stepper_state);
@@ -65,22 +55,25 @@ ISR( TIMER2_COMP_vect ){
 	if(stepper_state < 7){
 		stepper_state++;
 	} else {
-		//OCR2 = ADCH;
+		
 		stepper_state = 0;
 		
 		if(steps_to_do == 0){
 			
+			// change rotation if the steps todo is 0.
 			if(rotation == ClockWise){
 				rotation = CounterClockWise;
 			} else {
 				rotation = ClockWise;
 			}
 			
+			// set the steps to do again.
 			steps_to_do = steps_each_turn;
 			
 		} else {
 			
-			if(steps_to_do % 32 == 0){
+			// if the stepper step value is at a multiplier of 32 then make snap event.
+			if(steps_to_do % STEPS_EACH_PULSE == 0){
 				
 				if(snap_event != NULL)
 					snap_event(steps_to_do);
