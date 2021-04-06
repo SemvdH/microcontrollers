@@ -7,7 +7,7 @@
 
 #define F_CPU 10e6
 #define ROTAITION_ANGLE 512
-// rotation with a little overhead so the starting position wil not miss.
+// rotation with a little overhead so the starting position will not miss.
 #define INIT_ROTAITION_ANGLE 600
 #define MAX_DISTANCE_INIT 20
 
@@ -69,7 +69,7 @@ int main(void)
     {
 		lcd_clear();
 		// set the ultrasonic value to the lcd.
-		lcd_write_double("dist" ,ultrasonic_get_timer_dist(), "cm");
+		lcd_write_ultrasonic_value(ultrasonic_get_timer_dist());
 		
 		wait_ms(LCD_SET_DELAY);
     }

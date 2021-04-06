@@ -100,7 +100,7 @@ void init_stepper_driver(){
 	DDRG = 0xff;
 	PORTG = 0x01;
 	PORTE = 0x00;
-	OCR2 = 150;
+	OCR2 = COMPARE_VALUE;
 	TIMSK = BIT(7);
 	sei();
 }

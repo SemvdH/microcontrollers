@@ -39,7 +39,7 @@ void lcd_write_int(int number);
 /************************************************************************/
 /* write double to the lcd                                              */
 /************************************************************************/
-void lcd_write_double(char prefix[], double number, char suffix[]);
+void lcd_write_double(char prefix[], float number, char suffix[]);
 
 /************************************************************************/
 /* write ultrasonic reading on the lcd                                  */

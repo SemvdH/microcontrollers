@@ -12,6 +12,8 @@
 #include <stdbool.h>
 
 #define STEPS_EACH_PULSE 32
+#define STEPPER_SPEED 105
+#define COMPARE_VALUE (255 - STEPPER_SPEED)
 
 enum rotation_wise {
 	ClockWise,
